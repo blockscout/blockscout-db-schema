@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>blockscout Database</title>
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon.png">
+        <!-- Bootstrap 3.3.5 -->
+        <link rel="stylesheet" href="bower/admin-lte/bootstrap/css/bootstrap.min.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="bower/font-awesome/css/font-awesome.min.css">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="bower/ionicons/css/ionicons.min.css">
+        <!-- DataTables -->
+        <link rel="stylesheet" href="bower/datatables.net-bs/css/dataTables.bootstrap.min.css">
+        <link rel="stylesheet" href="bower/datatables.net-buttons-bs/css/buttons.bootstrap.min.css">
+        <!-- Code Mirror -->
+        <link rel="stylesheet" href="bower/codemirror/codemirror.css">
+        <!-- Fonts -->
+        <link href='fonts/indieflower/indie-flower.css' rel='stylesheet' type='text/css'>
+        <link href='fonts/source-sans-pro/source-sans-pro.css' rel='stylesheet' type='text/css'>
+
+        <!-- Theme style -->
+        <link rel="stylesheet" href="bower/admin-lte/dist/css/AdminLTE.min.css">
+        <!-- Salvattore -->
+        <link rel="stylesheet" href="bower/salvattore/salvattore.css">
+        <!-- AdminLTE Skins. Choose a skin from the css/skins
+           folder instead of downloading all of them to reduce the load. -->
+        <link rel="stylesheet" href="bower/admin-lte/dist/css/skins/_all-skins.min.css">
+        <!-- SchemaSpy -->
+        <link rel="stylesheet" href="schemaSpy.css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="bower/html5shiv/html5shiv.min.js"></script>
+        <script src="bower/respond/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
+    <body class="hold-transition skin-blue layout-top-nav">
+        <div class="wrapper">
+            <header class="main-header">
+                <nav class="navbar navbar-static-top">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <a href="index.html" class="navbar-brand"><b>blockscout</b> Database</a>
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse"><i class="fa fa-bars"></i></button>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="index.html">Tables <span class="sr-only">(current)</span></a></li>
+                                <li><a href="columns.html" title="All of the columns in the schema">Columns</a></li>
+                                <li><a href="constraints.html" title="Useful for diagnosing error messages that just give constraint name or number">Constraints</a></li>
+                                <li><a href="relationships.html" title="Diagram of table relationships">Relationships</a></li>
+                                <li><a href="orphans.html" title="View of tables with neither parents nor children">Orphan&nbsp;Tables</a></li>
+                                <li><a href="anomalies.html" title="Things that might not be quite right">Anomalies</a></li>
+                                <li><a href="routines.html" title="Procedures and functions">Routines</a></li>
+                            </ul>
+                        </div>
+                        <!-- /.navbar-collapse -->
+                        <!-- Navbar Right Menu -->
+                    </div>
+                    <!-- /.container-fluid -->
+                </nav>
+            </header>
+            <!-- Main content -->
+            <!-- Full Width Column -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                    <h1>All Relationships</h1>
+                </section>
+                <!-- Main content -->
+                <section class="content">
+                    <div class="box box-primary">
+                        <div class="box-header with-border">
+                            <i class="fa fa-code-fork"></i>
+                            <h3 class="box-title">Diagrams</h3>
+                        </div>
+                        <div class="box-body">
+                            <div class="nav-tabs-custom">
+                                <!-- Tabs within a box -->
+                                <h5>By default only columns that are primary keys, foreign keys or indexes are shown.</h5>
+                                <ul class="nav nav-tabs pull-left ui-sortable-handle">
+                                    <li class="active"><a href="#compactDegreeImg-chart" data-toggle="tab" aria-expanded="true">Compact</a></li>
+                                    <li class=""><a href="#largeDegreeImg-chart" data-toggle="tab" aria-expanded="true">Large</a></li>
+                                </ul>
+                                <div class="tab-content no-padding">
+                                    <div class="chart tab-pane active" id="compactDegreeImg-chart" style="position: relative; overflow-x:auto;">
+                                        <map id="compactRelationshipsDiagram" name="compactRelationshipsDiagram">
+<area shape="rect" id="node1" href="../../tables/address_coin_balances.html" target="_top" title="address_coin_balances" alt="" coords="413,563,669,739">
+<area shape="rect" id="node5" href="../../tables/addresses.html" target="_top" title="addresses" alt="" coords="5,1300,344,1476">
+<area shape="rect" id="node2" href="../../tables/address_coin_balances_daily.html" target="_top" title="address_coin_balances_daily" alt="" coords="391,756,691,903">
+<area shape="rect" id="node3" href="../../tables/address_current_token_balances.html" target="_top" title="address_current_token_balances" alt="" coords="750,324,1082,588">
+<area shape="rect" id="node19" href="../../tables/tokens.html" target="_top" title="tokens" alt="" coords="425,956,656,1132">
+<area shape="rect" id="node4" href="../../tables/address_token_balances.html" target="_top" title="address_token_balances" alt="" coords="774,933,1058,1168">
+<area shape="rect" id="node6" href="../../tables/administrators.html" target="_top" title="administrators" alt="" coords="1188,5,1388,181">
+<area shape="rect" id="node23" href="../../tables/users.html" target="_top" title="users" alt="" coords="831,160,1001,307">
+<area shape="rect" id="node7" href="../../tables/block_rewards.html" target="_top" title="block_rewards" alt="" coords="819,1329,1013,1505">
+<area shape="rect" id="node9" href="../../tables/blocks.html" target="_top" title="blocks" alt="" coords="449,1565,633,1888">
+<area shape="rect" id="node8" href="../../tables/block_second_degree_relations.html" target="_top" title="block_second_degree_relations" alt="" coords="757,1765,1075,1912">
+<area shape="rect" id="node10" href="../../tables/bridged_tokens.html" target="_top" title="bridged_tokens" alt="" coords="742,605,1090,723">
+<area shape="rect" id="node11" href="../../tables/decompiled_smart_contracts.html" target="_top" title="decompiled_smart_contracts" alt="" coords="388,2560,693,2736">
+<area shape="rect" id="node12" href="../../tables/internal_transactions.html" target="_top" title="internal_transactions" alt="" coords="1139,1127,1437,1479">
+<area shape="rect" id="node21" href="../../tables/transactions.html" target="_top" title="transactions" alt="" coords="755,1929,1077,2399">
+<area shape="rect" id="node13" href="../../tables/logs.html" target="_top" title="logs" alt="" coords="1195,1496,1381,1877">
+<area shape="rect" id="node14" href="../../tables/pending_block_operations.html" target="_top" title="pending_block_operations" alt="" coords="775,1595,1057,1712">
+<area shape="rect" id="node15" href="../../tables/smart_contracts.html" target="_top" title="smart_contracts" alt="" coords="423,2753,659,2929">
+<area shape="rect" id="node16" href="../../tables/smart_contracts_additional_sources.html" target="_top" title="smart_contracts_additional_sources" alt="" coords="737,2753,1095,2900">
+<area shape="rect" id="node17" href="../../tables/token_instances.html" target="_top" title="token_instances" alt="" coords="774,740,1058,916">
+<area shape="rect" id="node18" href="../../tables/token_transfers.html" target="_top" title="token_transfers" alt="" coords="1146,2317,1430,2640">
+<area shape="rect" id="node20" href="../../tables/transaction_forks.html" target="_top" title="transaction_forks" alt="" coords="1179,1928,1397,2104">
+<area shape="rect" id="node22" href="../../tables/user_contacts.html" target="_top" title="user_contacts" alt="" coords="1193,199,1383,375">
+</map>
+                                        <a name='diagram'><object type="image/svg+xml" id="compactDegreeImg" data="diagrams/summary/relationships.real.compact.svg" class="diagram" border="0" align="left"></object></a>
+                                    </div>
+                                    <div class="chart tab-pane " id="largeDegreeImg-chart" style="position: relative; overflow-x:auto;">
+                                        <map id="largeRelationshipsDiagram" name="largeRelationshipsDiagram">
+<area shape="rect" id="node1" href="../../tables/address_coin_balances.html" target="_top" title="address_coin_balances" alt="" coords="413,825,669,1065">
+<area shape="rect" id="node5" href="../../tables/addresses.html" target="_top" title="addresses" alt="" coords="5,1901,344,2317">
+<area shape="rect" id="node2" href="../../tables/address_coin_balances_daily.html" target="_top" title="address_coin_balances_daily" alt="" coords="391,1083,691,1293">
+<area shape="rect" id="node3" href="../../tables/address_current_token_balances.html" target="_top" title="address_current_token_balances" alt="" coords="750,405,1082,792">
+<area shape="rect" id="node19" href="../../tables/tokens.html" target="_top" title="tokens" alt="" coords="425,1347,656,1763">
+<area shape="rect" id="node4" href="../../tables/address_token_balances.html" target="_top" title="address_token_balances" alt="" coords="774,1441,1058,1799">
+<area shape="rect" id="node6" href="../../tables/administrators.html" target="_top" title="administrators" alt="" coords="1188,5,1388,216">
+<area shape="rect" id="node23" href="../../tables/users.html" target="_top" title="users" alt="" coords="831,177,1001,388">
+<area shape="rect" id="node7" href="../../tables/block_rewards.html" target="_top" title="block_rewards" alt="" coords="819,1960,1013,2200">
+<area shape="rect" id="node9" href="../../tables/blocks.html" target="_top" title="blocks" alt="" coords="449,2172,633,2735">
+<area shape="rect" id="node8" href="../../tables/block_second_degree_relations.html" target="_top" title="block_second_degree_relations" alt="" coords="757,2524,1075,2705">
+<area shape="rect" id="node10" href="../../tables/bridged_tokens.html" target="_top" title="bridged_tokens" alt="" coords="742,809,1090,1167">
+<area shape="rect" id="node11" href="../../tables/decompiled_smart_contracts.html" target="_top" title="decompiled_smart_contracts" alt="" coords="388,3799,693,4039">
+<area shape="rect" id="node12" href="../../tables/internal_transactions.html" target="_top" title="internal_transactions" alt="" coords="1139,1376,1437,2085">
+<area shape="rect" id="node21" href="../../tables/transactions.html" target="_top" title="transactions" alt="" coords="755,2723,1077,3637">
+<area shape="rect" id="node13" href="../../tables/logs.html" target="_top" title="logs" alt="" coords="1195,2103,1381,2548">
+<area shape="rect" id="node14" href="../../tables/pending_block_operations.html" target="_top" title="pending_block_operations" alt="" coords="775,2289,1057,2471">
+<area shape="rect" id="node15" href="../../tables/smart_contracts.html" target="_top" title="smart_contracts" alt="" coords="423,4056,659,4736">
+<area shape="rect" id="node16" href="../../tables/smart_contracts_additional_sources.html" target="_top" title="smart_contracts_additional_sources" alt="" coords="737,4144,1095,4384">
+<area shape="rect" id="node17" href="../../tables/token_instances.html" target="_top" title="token_instances" alt="" coords="774,1184,1058,1424">
+<area shape="rect" id="node18" href="../../tables/token_transfers.html" target="_top" title="token_transfers" alt="" coords="1146,3547,1430,3992">
+<area shape="rect" id="node20" href="../../tables/transaction_forks.html" target="_top" title="transaction_forks" alt="" coords="1179,2719,1397,2929">
+<area shape="rect" id="node22" href="../../tables/user_contacts.html" target="_top" title="user_contacts" alt="" coords="1193,233,1383,503">
+</map>
+                                        <a name='diagram'><object type="image/svg+xml" id="largeDegreeImg" data="diagrams/summary/relationships.real.large.svg" class="diagram" border="0" align="left"></object></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- /.box-body -->
+                    </div>
+                </section>
+            </div>
+            <!-- /.content-wrapper -->
+            <footer class="main-footer">
+                <div>
+                    <div class="pull-right hidden-xs">
+                        <a href="https://github.com/schemaspy/schemaspy" title="GitHub for SchemaSpy"><i class="fa fa-github-square fa-2x"></i></a>
+                        <a href="http://stackoverflow.com/questions/tagged/schemaspy" title="StackOverflow for SchemaSpy"><i class="fa fa-stack-overflow fa-2x"></i></a>
+                    </div>
+                    <strong>Generated by <a href="http://schemaspy.org/" class="logo-text"><i class="fa fa-database"></i> SchemaSpy 6.1.0</a></strong>
+                </div>
+                <!-- /.container -->
+            </footer>
+        </div>
+        <!-- ./wrapper -->
+
+        <!-- jQuery 2.2.3 -->
+        <script src="bower/admin-lte/plugins/jQuery/jquery-2.2.3.min.js"></script>
+        <script src="bower/admin-lte/plugins/jQueryUI/jquery-ui.min.js"></script>
+        <!-- Bootstrap 3.3.5 -->
+        <script src="bower/admin-lte/bootstrap/js/bootstrap.min.js"></script>
+        <!-- DataTables -->
+        <script src="bower/datatables.net/jquery.dataTables.min.js"></script>
+        <script src="bower/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+        <script src="bower/datatables.net-buttons/dataTables.buttons.min.js"></script>
+        <script src="bower/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+        <script src="bower/datatables.net-buttons/buttons.html5.min.js"></script>
+        <script src="bower/datatables.net-buttons/buttons.print.min.js"></script>
+        <script src="bower/datatables.net-buttons/buttons.colVis.min.js"></script>
+        <!-- SheetJS -->
+        <script src="bower/js-xlsx/xlsx.full.min.js"></script>
+        <!-- pdfmake -->
+        <script src="bower/pdfmake/pdfmake.min.js"></script>
+        <script src="bower/pdfmake/vfs_fonts.js"></script>
+        <!-- SlimScroll -->
+        <script src="bower/admin-lte/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+        <!-- FastClick -->
+        <script src="bower/admin-lte/plugins/fastclick/fastclick.js"></script>
+        <!-- Salvattore -->
+        <script src="bower/salvattore/salvattore.min.js"></script>
+        <!-- AnchorJS -->
+        <script src="bower/anchor-js/anchor.min.js"></script>
+        <!-- CodeMirror -->
+        <script src="bower/codemirror/codemirror.js"></script>
+        <script src="bower/codemirror/sql.js"></script>
+        <!-- AdminLTE App -->
+        <script src="bower/admin-lte/dist/js/app.min.js"></script>
+        <script src="relationships.js"></script>
+        <script src="schemaSpy.js"></script>
+    </body>
+</html>

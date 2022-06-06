@@ -1,0 +1,1038 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<database name="blockscout" schema="public" type="PostgreSQL - 12.8">
+   <sequences>
+      <sequence increment="1" name="address_current_token_balances_id_seq" startValue="1"/>
+      <sequence increment="1" name="address_token_balances_id_seq" startValue="1"/>
+      <sequence increment="1" name="administrators_id_seq" startValue="1"/>
+      <sequence increment="1" name="contract_methods_id_seq" startValue="1"/>
+      <sequence increment="1" name="decompiled_smart_contracts_id_seq" startValue="1"/>
+      <sequence increment="1" name="market_history_id_seq" startValue="1"/>
+      <sequence increment="1" name="smart_contracts_additional_sources_id_seq" startValue="1"/>
+      <sequence increment="1" name="smart_contracts_id_seq" startValue="1"/>
+      <sequence increment="1" name="staking_pools_delegators_id_seq" startValue="1"/>
+      <sequence increment="1" name="staking_pools_id_seq" startValue="1"/>
+      <sequence increment="1" name="transaction_stats_id_seq" startValue="1"/>
+      <sequence increment="1" name="user_contacts_id_seq" startValue="1"/>
+      <sequence increment="1" name="users_id_seq" startValue="1"/>
+   </sequences>
+   <tables>
+      <table name="address_coin_balances" numRows="3" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="address_hash" nullable="false" remarks="" size="2147483647" type="bytea" typeCode="-2">
+            <parent column="hash" foreignKey="address_coin_balances_address_hash_fkey" implied="false" onDeleteCascade="false" schema="public" table="addresses"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="block_number" nullable="false" remarks="" size="19" type="int8" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="NULL::numeric" digits="0" id="2" name="value" nullable="true" remarks="" size="100" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="3" name="value_fetched_at" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="4" name="inserted_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="5" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <index name="address_coin_balances_address_hash_block_number_index" unique="true">
+            <column ascending="true" name="address_hash"/>
+            <column ascending="true" name="block_number"/>
+         </index>
+         <index name="address_coin_balances_value_fetched_at_index" unique="false">
+            <column ascending="true" name="value_fetched_at"/>
+         </index>
+         <index name="unfetched_balances" unique="true">
+            <column ascending="true" name="address_hash"/>
+            <column ascending="true" name="block_number"/>
+         </index>
+      </table>
+      <table name="address_coin_balances_daily" numRows="3" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="address_hash" nullable="false" remarks="" size="2147483647" type="bytea" typeCode="-2">
+            <parent column="hash" foreignKey="address_coin_balances_daily_address_hash_fkey" implied="false" onDeleteCascade="false" schema="public" table="addresses"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="day" nullable="false" remarks="" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="NULL::numeric" digits="0" id="2" name="value" nullable="true" remarks="" size="100" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="3" name="inserted_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="4" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <index name="address_coin_balances_daily_address_hash_day_index" unique="true">
+            <column ascending="true" name="address_hash"/>
+            <column ascending="true" name="day"/>
+         </index>
+      </table>
+      <table name="address_current_token_balances" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('address_current_token_balances_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="address_hash" nullable="false" remarks="" size="2147483647" type="bytea" typeCode="-2">
+            <parent column="hash" foreignKey="address_current_token_balances_address_hash_fkey" implied="false" onDeleteCascade="false" schema="public" table="addresses"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="block_number" nullable="false" remarks="" size="19" type="int8" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="token_contract_address_hash" nullable="false" remarks="" size="2147483647" type="bytea" typeCode="-2">
+            <parent column="contract_address_hash" foreignKey="address_current_token_balances_token_contract_address_hash_fkey" implied="false" onDeleteCascade="false" schema="public" table="tokens"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="value" nullable="true" remarks="" size="131089" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="5" name="value_fetched_at" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="6" name="inserted_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="7" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="old_value" nullable="true" remarks="" size="131089" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="token_id" nullable="true" remarks="" size="78" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="token_type" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="address_current_token_balances_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="address_cur_token_balances_index" unique="false">
+            <column ascending="true" name="block_number"/>
+         </index>
+         <index name="address_current_token_balances_address_hash_block_number_token_" unique="false">
+            <column ascending="true" name="address_hash"/>
+            <column ascending="true" name="block_number"/>
+            <column ascending="true" name="token_contract_address_hash"/>
+         </index>
+         <index name="address_current_token_balances_token_contract_address_hash_inde" unique="false">
+            <column ascending="true" name="token_contract_address_hash"/>
+         </index>
+         <index name="address_current_token_balances_token_contract_address_hash_valu" unique="false">
+            <column ascending="true" name="token_contract_address_hash"/>
+            <column ascending="true" name="value"/>
+         </index>
+         <index name="address_current_token_balances_token_id_index" unique="false">
+            <column ascending="true" name="token_id"/>
+         </index>
+         <index name="address_current_token_balances_value" unique="false">
+            <column ascending="true" name="value"/>
+         </index>
+         <index name="fetched_current_token_balances" unique="true">
+            <column ascending="true" name="address_hash"/>
+            <column ascending="true" name="token_contract_address_hash"/>
+         </index>
+         <index name="fetched_current_token_balances_with_token_id" unique="true">
+            <column ascending="true" name="address_hash"/>
+            <column ascending="true" name="token_contract_address_hash"/>
+            <column ascending="true" name="token_id"/>
+         </index>
+      </table>
+      <table name="address_names" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="address_hash" nullable="false" remarks="" size="2147483647" type="bytea" typeCode="-2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name" nullable="false" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="2" name="primary" nullable="false" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="3" name="inserted_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="4" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="metadata" nullable="true" remarks="" size="2147483647" type="jsonb" typeCode="1111"/>
+         <index name="address_names_address_hash_index" unique="true">
+            <column ascending="true" name="address_hash"/>
+         </index>
+         <index name="unique_address_names" unique="true">
+            <column ascending="true" name="address_hash"/>
+            <column ascending="true" name="name"/>
+         </index>
+      </table>
+      <table name="address_token_balances" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('address_token_balances_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="address_hash" nullable="false" remarks="" size="2147483647" type="bytea" typeCode="-2">
+            <parent column="hash" foreignKey="address_token_balances_address_hash_fkey" implied="false" onDeleteCascade="false" schema="public" table="addresses"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="block_number" nullable="false" remarks="" size="19" type="int8" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="token_contract_address_hash" nullable="false" remarks="" size="2147483647" type="bytea" typeCode="-2">
+            <parent column="contract_address_hash" foreignKey="address_token_balances_token_contract_address_hash_fkey" implied="false" onDeleteCascade="false" schema="public" table="tokens"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="value" nullable="true" remarks="" size="131089" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="5" name="value_fetched_at" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="6" name="inserted_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="7" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="token_id" nullable="true" remarks="" size="78" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="token_type" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="address_token_balances_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="address_token_balances_address_hash_token_contract_address_hash" unique="false">
+            <column ascending="true" name="address_hash"/>
+            <column ascending="true" name="token_contract_address_hash"/>
+            <column ascending="true" name="block_number"/>
+         </index>
+         <index name="address_token_balances_block_number_address_hash_index" unique="false">
+            <column ascending="true" name="block_number"/>
+            <column ascending="true" name="address_hash"/>
+         </index>
+         <index name="address_token_balances_token_contract_address_hash_index" unique="false">
+            <column ascending="true" name="token_contract_address_hash"/>
+         </index>
+         <index name="address_token_balances_token_id_index" unique="false">
+            <column ascending="true" name="token_id"/>
+         </index>
+         <index name="fetched_token_balances" unique="true">
+            <column ascending="true" name="address_hash"/>
+            <column ascending="true" name="token_contract_address_hash"/>
+            <column ascending="true" name="block_number"/>
+         </index>
+         <index name="fetched_token_balances_with_token_id" unique="true">
+            <column ascending="true" name="address_hash"/>
+            <column ascending="true" name="token_contract_address_hash"/>
+            <column ascending="true" name="token_id"/>
+            <column ascending="true" name="block_number"/>
+         </index>
+         <index name="unfetched_token_balances" unique="true">
+            <column ascending="true" name="address_hash"/>
+            <column ascending="true" name="token_contract_address_hash"/>
+            <column ascending="true" name="block_number"/>
+         </index>
+         <index name="unfetched_token_balances_with_token_id" unique="true">
+            <column ascending="true" name="address_hash"/>
+            <column ascending="true" name="token_contract_address_hash"/>
+            <column ascending="true" name="token_id"/>
+            <column ascending="true" name="block_number"/>
+         </index>
+      </table>
+      <table name="addresses" numRows="2" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="fetched_coin_balance" nullable="true" remarks="" size="100" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="fetched_coin_balance_block_number" nullable="true" remarks="" size="19" type="int8" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="hash" nullable="false" remarks="" size="2147483647" type="bytea" typeCode="-2">
+            <child column="address_hash" foreignKey="address_coin_balances_address_hash_fkey" implied="false" onDeleteCascade="false" schema="public" table="address_coin_balances"/>
+            <child column="address_hash" foreignKey="address_coin_balances_daily_address_hash_fkey" implied="false" onDeleteCascade="false" schema="public" table="address_coin_balances_daily"/>
+            <child column="address_hash" foreignKey="address_current_token_balances_address_hash_fkey" implied="false" onDeleteCascade="false" schema="public" table="address_current_token_balances"/>
+            <child column="address_hash" foreignKey="address_token_balances_address_hash_fkey" implied="false" onDeleteCascade="false" schema="public" table="address_token_balances"/>
+            <child column="address_hash" foreignKey="block_rewards_address_hash_fkey" implied="false" onDeleteCascade="true" schema="public" table="block_rewards"/>
+            <child column="miner_hash" foreignKey="blocks_miner_hash_fkey" implied="false" onDeleteCascade="false" schema="public" table="blocks"/>
+            <child column="address_hash" foreignKey="decompiled_smart_contracts_address_hash_fkey" implied="false" onDeleteCascade="true" schema="public" table="decompiled_smart_contracts"/>
+            <child column="created_contract_address_hash" foreignKey="internal_transactions_created_contract_address_hash_fkey" implied="false" onDeleteCascade="false" schema="public" table="internal_transactions"/>
+            <child column="from_address_hash" foreignKey="internal_transactions_from_address_hash_fkey" implied="false" onDeleteCascade="false" schema="public" table="internal_transactions"/>
+            <child column="to_address_hash" foreignKey="internal_transactions_to_address_hash_fkey" implied="false" onDeleteCascade="false" schema="public" table="internal_transactions"/>
+            <child column="address_hash" foreignKey="logs_address_hash_fkey" implied="false" onDeleteCascade="true" schema="public" table="logs"/>
+            <child column="address_hash" foreignKey="smart_contracts_address_hash_fkey" implied="false" onDeleteCascade="true" schema="public" table="smart_contracts"/>
+            <child column="from_address_hash" foreignKey="token_transfers_from_address_hash_fkey" implied="false" onDeleteCascade="false" schema="public" table="token_transfers"/>
+            <child column="to_address_hash" foreignKey="token_transfers_to_address_hash_fkey" implied="false" onDeleteCascade="false" schema="public" table="token_transfers"/>
+            <child column="token_contract_address_hash" foreignKey="token_transfers_token_contract_address_hash_fkey" implied="false" onDeleteCascade="false" schema="public" table="token_transfers"/>
+            <child column="contract_address_hash" foreignKey="tokens_contract_address_hash_fkey" implied="false" onDeleteCascade="true" schema="public" table="tokens"/>
+            <child column="created_contract_address_hash" foreignKey="transactions_created_contract_address_hash_fkey" implied="false" onDeleteCascade="false" schema="public" table="transactions"/>
+            <child column="from_address_hash" foreignKey="transactions_from_address_hash_fkey" implied="false" onDeleteCascade="true" schema="public" table="transactions"/>
+            <child column="to_address_hash" foreignKey="transactions_to_address_hash_fkey" implied="false" onDeleteCascade="true" schema="public" table="transactions"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="contract_code" nullable="true" remarks="" size="2147483647" type="bytea" typeCode="-2"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="4" name="inserted_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="5" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="nonce" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="decompiled" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="verified" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="gas_used" nullable="true" remarks="" size="19" type="int8" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="transactions_count" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="token_transfers_count" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <primaryKey column="hash" sequenceNumberInPK="1"/>
+         <index name="addresses_pkey" unique="true">
+            <column ascending="true" name="hash"/>
+         </index>
+         <index name="addresses_fetched_coin_balance_hash_index" unique="false">
+            <column ascending="false" name="fetched_coin_balance"/>
+            <column ascending="true" name="hash"/>
+         </index>
+         <index name="addresses_fetched_coin_balance_index" unique="false">
+            <column ascending="true" name="fetched_coin_balance"/>
+         </index>
+         <index name="addresses_inserted_at_index" unique="false">
+            <column ascending="true" name="inserted_at"/>
+         </index>
+      </table>
+      <table name="administrators" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('administrators_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="role" nullable="false" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="user_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <parent column="id" foreignKey="administrators_user_id_fkey" implied="false" onDeleteCascade="true" schema="public" table="users"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="3" name="inserted_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="4" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="administrators_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="administrators_user_id_index" unique="true">
+            <column ascending="true" name="user_id"/>
+         </index>
+         <index name="owner_role_limit" unique="true">
+            <column ascending="true" name="role"/>
+         </index>
+      </table>
+      <table name="block_rewards" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="address_hash" nullable="false" remarks="" size="2147483647" type="bytea" typeCode="-2">
+            <parent column="hash" foreignKey="block_rewards_address_hash_fkey" implied="false" onDeleteCascade="true" schema="public" table="addresses"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="address_type" nullable="false" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="block_hash" nullable="false" remarks="" size="2147483647" type="bytea" typeCode="-2">
+            <parent column="hash" foreignKey="block_rewards_block_hash_fkey" implied="false" onDeleteCascade="true" schema="public" table="blocks"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="reward" nullable="true" remarks="" size="100" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="inserted_at" nullable="false" remarks="" size="22" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="updated_at" nullable="false" remarks="" size="22" type="timestamp" typeCode="93"/>
+         <index name="block_rewards_address_hash_block_hash_address_type_index" unique="true">
+            <column ascending="true" name="address_hash"/>
+            <column ascending="true" name="block_hash"/>
+            <column ascending="true" name="address_type"/>
+         </index>
+         <index name="block_rewards_block_hash_index" unique="false">
+            <column ascending="true" name="block_hash"/>
+         </index>
+      </table>
+      <table name="block_second_degree_relations" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="nephew_hash" nullable="false" remarks="" size="2147483647" type="bytea" typeCode="-2">
+            <parent column="hash" foreignKey="block_second_degree_relations_nephew_hash_fkey" implied="false" onDeleteCascade="false" schema="public" table="blocks"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="uncle_hash" nullable="false" remarks="" size="2147483647" type="bytea" typeCode="-2"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="2" name="uncle_fetched_at" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="index" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <primaryKey column="nephew_hash" sequenceNumberInPK="1"/>
+         <primaryKey column="uncle_hash" sequenceNumberInPK="2"/>
+         <index name="block_second_degree_relations_pkey" unique="true">
+            <column ascending="true" name="nephew_hash"/>
+            <column ascending="true" name="uncle_hash"/>
+         </index>
+         <index name="nephew_hash_to_uncle_hash" unique="true">
+            <column ascending="true" name="nephew_hash"/>
+            <column ascending="true" name="uncle_hash"/>
+         </index>
+         <index name="uncle_hash_to_nephew_hash" unique="true">
+            <column ascending="true" name="uncle_hash"/>
+            <column ascending="true" name="nephew_hash"/>
+         </index>
+         <index name="unfetched_uncles" unique="true">
+            <column ascending="true" name="nephew_hash"/>
+            <column ascending="true" name="uncle_hash"/>
+         </index>
+      </table>
+      <table name="blocks" numRows="3" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="consensus" nullable="false" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="difficulty" nullable="true" remarks="" size="50" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="gas_limit" nullable="false" remarks="" size="100" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="gas_used" nullable="false" remarks="" size="100" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="hash" nullable="false" remarks="" size="2147483647" type="bytea" typeCode="-2">
+            <child column="block_hash" foreignKey="block_rewards_block_hash_fkey" implied="false" onDeleteCascade="true" schema="public" table="block_rewards"/>
+            <child column="nephew_hash" foreignKey="block_second_degree_relations_nephew_hash_fkey" implied="false" onDeleteCascade="false" schema="public" table="block_second_degree_relations"/>
+            <child column="block_hash" foreignKey="internal_transactions_block_hash_fkey" implied="false" onDeleteCascade="false" schema="public" table="internal_transactions"/>
+            <child column="block_hash" foreignKey="logs_block_hash_fkey" implied="false" onDeleteCascade="false" schema="public" table="logs"/>
+            <child column="block_hash" foreignKey="pending_block_operations_block_hash_fkey" implied="false" onDeleteCascade="true" schema="public" table="pending_block_operations"/>
+            <child column="block_hash" foreignKey="token_transfers_block_hash_fkey" implied="false" onDeleteCascade="false" schema="public" table="token_transfers"/>
+            <child column="uncle_hash" foreignKey="transaction_forks_uncle_hash_fkey" implied="false" onDeleteCascade="true" schema="public" table="transaction_forks"/>
+            <child column="block_hash" foreignKey="transactions_block_hash_fkey" implied="false" onDeleteCascade="true" schema="public" table="transactions"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="miner_hash" nullable="false" remarks="" size="2147483647" type="bytea" typeCode="-2">
+            <parent column="hash" foreignKey="blocks_miner_hash_fkey" implied="false" onDeleteCascade="false" schema="public" table="addresses"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="nonce" nullable="false" remarks="" size="2147483647" type="bytea" typeCode="-2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="number" nullable="false" remarks="" size="19" type="int8" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="parent_hash" nullable="false" remarks="" size="2147483647" type="bytea" typeCode="-2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="size" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="10" name="timestamp" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="total_difficulty" nullable="true" remarks="" size="50" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="12" name="inserted_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="13" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="14" name="refetch_needed" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="15" name="base_fee_per_gas" nullable="true" remarks="" size="100" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="16" name="is_empty" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
+         <primaryKey column="hash" sequenceNumberInPK="1"/>
+         <index name="blocks_pkey" unique="true">
+            <column ascending="true" name="hash"/>
+         </index>
+         <index name="blocks_consensus_index" unique="false">
+            <column ascending="true" name="consensus"/>
+         </index>
+         <index name="blocks_inserted_at_index" unique="false">
+            <column ascending="true" name="inserted_at"/>
+         </index>
+         <index name="blocks_is_empty_index" unique="false">
+            <column ascending="true" name="is_empty"/>
+         </index>
+         <index name="blocks_miner_hash_index" unique="false">
+            <column ascending="true" name="miner_hash"/>
+         </index>
+         <index name="blocks_miner_hash_number_index" unique="false">
+            <column ascending="true" name="miner_hash"/>
+            <column ascending="true" name="number"/>
+         </index>
+         <index name="blocks_number_index" unique="false">
+            <column ascending="true" name="number"/>
+         </index>
+         <index name="blocks_timestamp_index" unique="false">
+            <column ascending="true" name="timestamp"/>
+         </index>
+         <index name="empty_consensus_blocks" unique="false">
+            <column ascending="true" name="consensus"/>
+         </index>
+         <index name="one_consensus_block_at_height" unique="true">
+            <column ascending="true" name="number"/>
+         </index>
+         <index name="one_consensus_child_per_parent" unique="true">
+            <column ascending="true" name="parent_hash"/>
+         </index>
+      </table>
+      <table name="bridged_tokens" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="foreign_chain_id" nullable="false" remarks="" size="131089" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="foreign_token_contract_address_hash" nullable="false" remarks="" size="2147483647" type="bytea" typeCode="-2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="home_token_contract_address_hash" nullable="false" remarks="" size="2147483647" type="bytea" typeCode="-2">
+            <parent column="contract_address_hash" foreignKey="bridged_tokens_home_token_contract_address_hash_fkey" implied="false" onDeleteCascade="true" schema="public" table="tokens"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="3" name="inserted_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="4" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="custom_metadata" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="type" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="exchange_rate" nullable="true" remarks="" size="131089" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="lp_token" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="custom_cap" nullable="true" remarks="" size="131089" type="numeric" typeCode="2"/>
+         <index name="bridged_tokens_home_token_contract_address_hash_index" unique="true">
+            <column ascending="true" name="home_token_contract_address_hash"/>
+         </index>
+      </table>
+      <table name="contract_methods" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('contract_methods_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="identifier" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="abi" nullable="false" remarks="" size="2147483647" type="jsonb" typeCode="1111"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="type" nullable="false" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="4" name="inserted_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="5" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="contract_methods_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="contract_methods_identifier_abi_index" unique="true">
+            <column ascending="true" name="identifier"/>
+            <column ascending="true" name="abi"/>
+         </index>
+      </table>
+      <table name="contract_verification_status" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="uid" nullable="false" remarks="" size="64" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="status" nullable="false" remarks="" size="5" type="int2" typeCode="5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="address_hash" nullable="false" remarks="" size="2147483647" type="bytea" typeCode="-2"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="3" name="inserted_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="4" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="uid" sequenceNumberInPK="1"/>
+         <index name="contract_verification_status_pkey" unique="true">
+            <column ascending="true" name="uid"/>
+         </index>
+      </table>
+      <table name="decompiled_smart_contracts" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('decompiled_smart_contracts_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="decompiler_version" nullable="false" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="decompiled_source_code" nullable="false" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="address_hash" nullable="false" remarks="" size="2147483647" type="bytea" typeCode="-2">
+            <parent column="hash" foreignKey="decompiled_smart_contracts_address_hash_fkey" implied="false" onDeleteCascade="true" schema="public" table="addresses"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="4" name="inserted_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="5" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="decompiled_smart_contracts_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="address_decompiler_version" unique="true">
+            <column ascending="true" name="address_hash"/>
+            <column ascending="true" name="decompiler_version"/>
+         </index>
+      </table>
+      <table name="emission_rewards" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="block_range" nullable="true" remarks="" size="2147483647" type="int8range" typeCode="1111"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="reward" nullable="true" remarks="" size="131089" type="numeric" typeCode="2"/>
+         <index name="emission_rewards_block_range_index" unique="false">
+            <column ascending="true" name="block_range"/>
+         </index>
+         <index name="no_overlapping_ranges" unique="false">
+            <column ascending="true" name="block_range"/>
+         </index>
+      </table>
+      <table name="internal_transactions" numRows="1" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="call_type" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="created_contract_code" nullable="true" remarks="" size="2147483647" type="bytea" typeCode="-2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="error" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="gas" nullable="true" remarks="" size="100" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="gas_used" nullable="true" remarks="" size="100" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="index" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="init" nullable="true" remarks="" size="2147483647" type="bytea" typeCode="-2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="input" nullable="true" remarks="" size="2147483647" type="bytea" typeCode="-2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="output" nullable="true" remarks="" size="2147483647" type="bytea" typeCode="-2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="trace_address" nullable="false" remarks="" size="10" type="_int4" typeCode="2003"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="type" nullable="false" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="value" nullable="false" remarks="" size="100" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="12" name="inserted_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="13" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="14" name="created_contract_address_hash" nullable="true" remarks="" size="2147483647" type="bytea" typeCode="-2">
+            <parent column="hash" foreignKey="internal_transactions_created_contract_address_hash_fkey" implied="false" onDeleteCascade="false" schema="public" table="addresses"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="15" name="from_address_hash" nullable="true" remarks="" size="2147483647" type="bytea" typeCode="-2">
+            <parent column="hash" foreignKey="internal_transactions_from_address_hash_fkey" implied="false" onDeleteCascade="false" schema="public" table="addresses"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="16" name="to_address_hash" nullable="true" remarks="" size="2147483647" type="bytea" typeCode="-2">
+            <parent column="hash" foreignKey="internal_transactions_to_address_hash_fkey" implied="false" onDeleteCascade="false" schema="public" table="addresses"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="17" name="transaction_hash" nullable="false" remarks="" size="2147483647" type="bytea" typeCode="-2">
+            <parent column="hash" foreignKey="internal_transactions_transaction_hash_fkey" implied="false" onDeleteCascade="true" schema="public" table="transactions"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="18" name="block_number" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="19" name="transaction_index" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="20" name="block_hash" nullable="false" remarks="" size="2147483647" type="bytea" typeCode="-2">
+            <parent column="hash" foreignKey="internal_transactions_block_hash_fkey" implied="false" onDeleteCascade="false" schema="public" table="blocks"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="21" name="block_index" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
+         <primaryKey column="block_hash" sequenceNumberInPK="1"/>
+         <primaryKey column="block_index" sequenceNumberInPK="2"/>
+         <index name="internal_transactions_pkey" unique="true">
+            <column ascending="true" name="block_hash"/>
+            <column ascending="true" name="block_index"/>
+         </index>
+         <index name="internal_transactions_block_number_DESC__transaction_index_DESC" unique="false">
+            <column ascending="false" name="block_number"/>
+            <column ascending="false" name="transaction_index"/>
+            <column ascending="false" name="index"/>
+         </index>
+         <index name="internal_transactions_created_contract_address_hash_index" unique="false">
+            <column ascending="true" name="created_contract_address_hash"/>
+         </index>
+         <index name="internal_transactions_created_contract_address_hash_partial_ind" unique="false">
+            <column ascending="true" name="created_contract_address_hash"/>
+            <column ascending="false" name="block_number"/>
+            <column ascending="false" name="transaction_index"/>
+            <column ascending="false" name="index"/>
+         </index>
+         <index name="internal_transactions_from_address_hash_index" unique="false">
+            <column ascending="true" name="from_address_hash"/>
+         </index>
+         <index name="internal_transactions_from_address_hash_partial_index" unique="false">
+            <column ascending="true" name="from_address_hash"/>
+            <column ascending="false" name="block_number"/>
+            <column ascending="false" name="transaction_index"/>
+            <column ascending="false" name="index"/>
+         </index>
+         <index name="internal_transactions_to_address_hash_partial_index" unique="false">
+            <column ascending="true" name="to_address_hash"/>
+            <column ascending="false" name="block_number"/>
+            <column ascending="false" name="transaction_index"/>
+            <column ascending="false" name="index"/>
+         </index>
+         <index name="internal_transactions_transaction_hash_index_index" unique="false">
+            <column ascending="true" name="transaction_hash"/>
+            <column ascending="true" name="index"/>
+         </index>
+         <checkConstraint constraint="((((type)::text &lt;&gt; 'call'::text) OR (call_type IS NOT NULL))) NOT VALID" name="call_has_call_type"/>
+         <checkConstraint constraint="((((type)::text &lt;&gt; 'call'::text) OR ((gas IS NOT NULL) AND (((error IS NULL) AND (gas_used IS NOT NULL) AND (output IS NOT NULL)) OR ((error IS NOT NULL) AND (gas_used IS NULL) AND (output IS NULL))))))" name="call_has_error_or_result"/>
+         <checkConstraint constraint="((((type)::text &lt;&gt; 'call'::text) OR (input IS NOT NULL))) NOT VALID" name="call_has_input"/>
+         <checkConstraint constraint="((((type)::text &lt;&gt; 'create'::text) OR ((gas IS NOT NULL) AND (((error IS NULL) AND (created_contract_address_hash IS NOT NULL) AND (created_contract_code IS NOT NULL) AND (gas_used IS NOT NULL)) OR ((error IS NOT NULL) AND (created_contract_address_hash IS NULL) AND (created_contract_code IS NULL) AND (gas_used IS NULL))))))" name="create_has_error_or_result"/>
+         <checkConstraint constraint="((((type)::text &lt;&gt; 'create'::text) OR (init IS NOT NULL))) NOT VALID" name="create_has_init"/>
+         <checkConstraint constraint="((((type)::text &lt;&gt; 'selfdestruct'::text) OR ((from_address_hash IS NOT NULL) AND (gas IS NULL) AND (to_address_hash IS NOT NULL)))) NOT VALID" name="selfdestruct_has_from_and_to_address"/>
+      </table>
+      <table name="last_fetched_counters" numRows="1" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="counter_type" nullable="false" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="value" nullable="true" remarks="" size="100" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="2" name="inserted_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="3" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="counter_type" sequenceNumberInPK="1"/>
+         <index name="last_fetched_counters_pkey" unique="true">
+            <column ascending="true" name="counter_type"/>
+         </index>
+      </table>
+      <table name="logs" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="data" nullable="false" remarks="" size="2147483647" type="bytea" typeCode="-2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="index" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="type" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="first_topic" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="second_topic" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="third_topic" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="fourth_topic" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="7" name="inserted_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="8" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="address_hash" nullable="true" remarks="" size="2147483647" type="bytea" typeCode="-2">
+            <parent column="hash" foreignKey="logs_address_hash_fkey" implied="false" onDeleteCascade="true" schema="public" table="addresses"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="transaction_hash" nullable="false" remarks="" size="2147483647" type="bytea" typeCode="-2">
+            <parent column="hash" foreignKey="logs_transaction_hash_fkey" implied="false" onDeleteCascade="true" schema="public" table="transactions"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="block_hash" nullable="false" remarks="" size="2147483647" type="bytea" typeCode="-2">
+            <parent column="hash" foreignKey="logs_block_hash_fkey" implied="false" onDeleteCascade="false" schema="public" table="blocks"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="block_number" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <primaryKey column="transaction_hash" sequenceNumberInPK="1"/>
+         <primaryKey column="block_hash" sequenceNumberInPK="2"/>
+         <primaryKey column="index" sequenceNumberInPK="3"/>
+         <index name="logs_pkey" unique="true">
+            <column ascending="true" name="transaction_hash"/>
+            <column ascending="true" name="block_hash"/>
+            <column ascending="true" name="index"/>
+         </index>
+         <index name="logs_address_hash_index" unique="false">
+            <column ascending="true" name="address_hash"/>
+         </index>
+         <index name="logs_address_hash_transaction_hash_index" unique="false">
+            <column ascending="true" name="address_hash"/>
+            <column ascending="true" name="transaction_hash"/>
+         </index>
+         <index name="logs_block_number_DESC__index_DESC_index" unique="false">
+            <column ascending="false" name="block_number"/>
+            <column ascending="false" name="index"/>
+         </index>
+         <index name="logs_first_topic_index" unique="false">
+            <column ascending="true" name="first_topic"/>
+         </index>
+         <index name="logs_fourth_topic_index" unique="false">
+            <column ascending="true" name="fourth_topic"/>
+         </index>
+         <index name="logs_index_index" unique="false">
+            <column ascending="true" name="index"/>
+         </index>
+         <index name="logs_second_topic_index" unique="false">
+            <column ascending="true" name="second_topic"/>
+         </index>
+         <index name="logs_third_topic_index" unique="false">
+            <column ascending="true" name="third_topic"/>
+         </index>
+         <index name="logs_transaction_hash_index_index" unique="false">
+            <column ascending="true" name="transaction_hash"/>
+            <column ascending="true" name="index"/>
+         </index>
+         <index name="logs_type_index" unique="false">
+            <column ascending="true" name="type"/>
+         </index>
+      </table>
+      <table name="market_history" numRows="367" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('market_history_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="date" nullable="true" remarks="" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="closing_price" nullable="true" remarks="" size="131089" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="opening_price" nullable="true" remarks="" size="131089" type="numeric" typeCode="2"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="market_history_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="market_history_date_index" unique="true">
+            <column ascending="true" name="date"/>
+         </index>
+      </table>
+      <table name="pending_block_operations" numRows="1" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="block_hash" nullable="false" remarks="" size="2147483647" type="bytea" typeCode="-2">
+            <parent column="hash" foreignKey="pending_block_operations_block_hash_fkey" implied="false" onDeleteCascade="true" schema="public" table="blocks"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="1" name="inserted_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="2" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="fetch_internal_transactions" nullable="false" remarks="" size="1" type="bool" typeCode="-7"/>
+         <primaryKey column="block_hash" sequenceNumberInPK="1"/>
+         <index name="pending_block_operations_pkey" unique="true">
+            <column ascending="true" name="block_hash"/>
+         </index>
+         <index name="pending_block_operations_block_hash_index_partial" unique="false">
+            <column ascending="true" name="block_hash"/>
+         </index>
+      </table>
+      <table name="schema_migrations" numRows="151" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="version" nullable="false" remarks="" size="19" type="int8" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="inserted_at" nullable="true" remarks="" size="22" type="timestamp" typeCode="93"/>
+         <primaryKey column="version" sequenceNumberInPK="1"/>
+         <index name="schema_migrations_pkey" unique="true">
+            <column ascending="true" name="version"/>
+         </index>
+      </table>
+      <table name="smart_contracts" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('smart_contracts_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name" nullable="false" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="compiler_version" nullable="false" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="optimization" nullable="false" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="contract_source_code" nullable="false" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="abi" nullable="false" remarks="" size="2147483647" type="jsonb" typeCode="1111"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="address_hash" nullable="false" remarks="" size="2147483647" type="bytea" typeCode="-2">
+            <child column="address_hash" foreignKey="smart_contracts_additional_sources_address_hash_fkey" implied="false" onDeleteCascade="true" schema="public" table="smart_contracts_additional_sources"/>
+            <parent column="hash" foreignKey="smart_contracts_address_hash_fkey" implied="false" onDeleteCascade="true" schema="public" table="addresses"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="7" name="inserted_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="8" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="constructor_arguments" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="optimization_runs" nullable="true" remarks="" size="19" type="int8" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="evm_version" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="ARRAY[]::jsonb[]" digits="0" id="12" name="external_libraries" nullable="true" remarks="" size="2147483647" type="_jsonb" typeCode="2003"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="verified_via_sourcify" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="14" name="is_vyper_contract" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="15" name="partially_verified" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="16" name="file_path" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="17" name="is_changed_bytecode" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="(timezone('utc'::text, now()) - '1 day'::interval)" digits="6" id="18" name="bytecode_checked_at" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="19" name="contract_code_md5" nullable="false" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="20" name="implementation_name" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="smart_contracts_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="smart_contracts_address_hash_index" unique="true">
+            <column ascending="true" name="address_hash"/>
+         </index>
+         <index name="smart_contracts_contract_code_md5_index" unique="false">
+            <column ascending="true" name="contract_code_md5"/>
+         </index>
+      </table>
+      <table name="smart_contracts_additional_sources" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('smart_contracts_additional_sources_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="file_name" nullable="false" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="contract_source_code" nullable="false" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="address_hash" nullable="false" remarks="" size="2147483647" type="bytea" typeCode="-2">
+            <parent column="address_hash" foreignKey="smart_contracts_additional_sources_address_hash_fkey" implied="false" onDeleteCascade="true" schema="public" table="smart_contracts"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="4" name="inserted_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="5" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="smart_contracts_additional_sources_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="smart_contracts_additional_sources_address_hash_index" unique="false">
+            <column ascending="true" name="address_hash"/>
+         </index>
+      </table>
+      <table name="staking_pools" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('staking_pools_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="1" name="are_delegators_banned" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="banned_delegators_until" nullable="true" remarks="" size="19" type="int8" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="banned_until" nullable="true" remarks="" size="19" type="int8" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="ban_reason" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="delegators_count" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="6" name="is_active" nullable="false" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="7" name="is_banned" nullable="false" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="8" name="is_deleted" nullable="false" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="9" name="is_unremovable" nullable="false" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="10" name="is_validator" nullable="false" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="11" name="likelihood" nullable="true" remarks="" size="5" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="mining_address_hash" nullable="true" remarks="" size="2147483647" type="bytea" typeCode="-2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="self_staked_amount" nullable="true" remarks="" size="100" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="14" name="snapshotted_self_staked_amount" nullable="true" remarks="" size="100" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="15" name="snapshotted_total_staked_amount" nullable="true" remarks="" size="100" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="16" name="snapshotted_validator_reward_ratio" nullable="true" remarks="" size="5" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="17" name="stakes_ratio" nullable="true" remarks="" size="5" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="18" name="staking_address_hash" nullable="true" remarks="" size="2147483647" type="bytea" typeCode="-2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="19" name="total_staked_amount" nullable="true" remarks="" size="100" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="20" name="validator_reward_percent" nullable="true" remarks="" size="5" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="21" name="validator_reward_ratio" nullable="true" remarks="" size="5" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="22" name="was_banned_count" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="23" name="was_validator_count" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="24" name="inserted_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="25" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="26" name="name" nullable="true" remarks="" size="256" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="27" name="description" nullable="true" remarks="" size="1024" type="varchar" typeCode="12"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="staking_pools_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="staking_pools_mining_address_hash_index" unique="false">
+            <column ascending="true" name="mining_address_hash"/>
+         </index>
+         <index name="staking_pools_staking_address_hash_index" unique="true">
+            <column ascending="true" name="staking_address_hash"/>
+         </index>
+      </table>
+      <table name="staking_pools_delegators" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('staking_pools_delegators_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="address_hash" nullable="true" remarks="" size="2147483647" type="bytea" typeCode="-2"/>
+         <column autoUpdated="false" defaultValue="true" digits="0" id="2" name="is_active" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="3" name="is_deleted" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="max_ordered_withdraw_allowed" nullable="true" remarks="" size="100" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="max_withdraw_allowed" nullable="true" remarks="" size="100" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="ordered_withdraw" nullable="true" remarks="" size="100" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="ordered_withdraw_epoch" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="8" name="reward_ratio" nullable="true" remarks="" size="5" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="2" id="9" name="snapshotted_reward_ratio" nullable="true" remarks="" size="5" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="snapshotted_stake_amount" nullable="true" remarks="" size="100" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="stake_amount" nullable="true" remarks="" size="100" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="staking_address_hash" nullable="true" remarks="" size="2147483647" type="bytea" typeCode="-2"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="13" name="inserted_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="14" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="staking_pools_delegators_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="pools_delegator_index" unique="true">
+            <column ascending="true" name="address_hash"/>
+            <column ascending="true" name="staking_address_hash"/>
+         </index>
+         <index name="snapshotted_stake_amount_index" unique="false">
+            <column ascending="true" name="staking_address_hash"/>
+            <column ascending="true" name="snapshotted_stake_amount"/>
+            <column ascending="true" name="is_active"/>
+         </index>
+      </table>
+      <table name="token_instances" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="token_id" nullable="false" remarks="" size="78" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="token_contract_address_hash" nullable="false" remarks="" size="2147483647" type="bytea" typeCode="-2">
+            <parent column="contract_address_hash" foreignKey="token_instances_token_contract_address_hash_fkey" implied="false" onDeleteCascade="false" schema="public" table="tokens"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="metadata" nullable="true" remarks="" size="2147483647" type="jsonb" typeCode="1111"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="3" name="inserted_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="4" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="error" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <primaryKey column="token_id" sequenceNumberInPK="1"/>
+         <primaryKey column="token_contract_address_hash" sequenceNumberInPK="2"/>
+         <index name="token_instances_pkey" unique="true">
+            <column ascending="true" name="token_id"/>
+            <column ascending="true" name="token_contract_address_hash"/>
+         </index>
+         <index name="token_instances_error_index" unique="false">
+            <column ascending="true" name="error"/>
+         </index>
+      </table>
+      <table name="token_transfers" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="transaction_hash" nullable="false" remarks="" size="2147483647" type="bytea" typeCode="-2">
+            <parent column="hash" foreignKey="token_transfers_transaction_hash_fkey" implied="false" onDeleteCascade="true" schema="public" table="transactions"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="log_index" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="from_address_hash" nullable="false" remarks="" size="2147483647" type="bytea" typeCode="-2">
+            <parent column="hash" foreignKey="token_transfers_from_address_hash_fkey" implied="false" onDeleteCascade="false" schema="public" table="addresses"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="to_address_hash" nullable="false" remarks="" size="2147483647" type="bytea" typeCode="-2">
+            <parent column="hash" foreignKey="token_transfers_to_address_hash_fkey" implied="false" onDeleteCascade="false" schema="public" table="addresses"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="amount" nullable="true" remarks="" size="131089" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="token_id" nullable="true" remarks="" size="78" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="token_contract_address_hash" nullable="false" remarks="" size="2147483647" type="bytea" typeCode="-2">
+            <parent column="hash" foreignKey="token_transfers_token_contract_address_hash_fkey" implied="false" onDeleteCascade="false" schema="public" table="addresses"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="7" name="inserted_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="8" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="block_number" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="block_hash" nullable="false" remarks="" size="2147483647" type="bytea" typeCode="-2">
+            <parent column="hash" foreignKey="token_transfers_block_hash_fkey" implied="false" onDeleteCascade="false" schema="public" table="blocks"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="amounts" nullable="true" remarks="" size="131089" type="_numeric" typeCode="2003"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="token_ids" nullable="true" remarks="" size="78" type="_numeric" typeCode="2003"/>
+         <primaryKey column="transaction_hash" sequenceNumberInPK="1"/>
+         <primaryKey column="block_hash" sequenceNumberInPK="2"/>
+         <primaryKey column="log_index" sequenceNumberInPK="3"/>
+         <index name="token_transfers_pkey" unique="true">
+            <column ascending="true" name="transaction_hash"/>
+            <column ascending="true" name="block_hash"/>
+            <column ascending="true" name="log_index"/>
+         </index>
+         <index name="token_transfers_block_number_DESC_log_index_DESC_index" unique="false">
+            <column ascending="false" name="block_number"/>
+            <column ascending="false" name="log_index"/>
+         </index>
+         <index name="token_transfers_block_number_index" unique="false">
+            <column ascending="true" name="block_number"/>
+         </index>
+         <index name="token_transfers_from_address_hash_transaction_hash_index" unique="false">
+            <column ascending="true" name="from_address_hash"/>
+            <column ascending="true" name="transaction_hash"/>
+         </index>
+         <index name="token_transfers_to_address_hash_transaction_hash_index" unique="false">
+            <column ascending="true" name="to_address_hash"/>
+            <column ascending="true" name="transaction_hash"/>
+         </index>
+         <index name="token_transfers_token_contract_address_hash_block_number_index" unique="false">
+            <column ascending="true" name="token_contract_address_hash"/>
+            <column ascending="true" name="block_number"/>
+         </index>
+         <index name="token_transfers_token_contract_address_hash_token_id_DESC_block" unique="false">
+            <column ascending="true" name="token_contract_address_hash"/>
+            <column ascending="false" name="token_id"/>
+            <column ascending="false" name="block_number"/>
+         </index>
+         <index name="token_transfers_token_contract_address_hash_transaction_hash_in" unique="false">
+            <column ascending="true" name="token_contract_address_hash"/>
+            <column ascending="true" name="transaction_hash"/>
+         </index>
+         <index name="token_transfers_token_id_index" unique="false">
+            <column ascending="true" name="token_id"/>
+         </index>
+         <index name="token_transfers_transaction_hash_log_index_index" unique="false">
+            <column ascending="true" name="transaction_hash"/>
+            <column ascending="true" name="log_index"/>
+         </index>
+      </table>
+      <table name="tokens" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="name" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="symbol" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="total_supply" nullable="true" remarks="" size="131089" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="decimals" nullable="true" remarks="" size="131089" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="type" nullable="false" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="5" name="cataloged" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="contract_address_hash" nullable="false" remarks="" size="2147483647" type="bytea" typeCode="-2">
+            <child column="token_contract_address_hash" foreignKey="address_current_token_balances_token_contract_address_hash_fkey" implied="false" onDeleteCascade="false" schema="public" table="address_current_token_balances"/>
+            <child column="token_contract_address_hash" foreignKey="address_token_balances_token_contract_address_hash_fkey" implied="false" onDeleteCascade="false" schema="public" table="address_token_balances"/>
+            <child column="home_token_contract_address_hash" foreignKey="bridged_tokens_home_token_contract_address_hash_fkey" implied="false" onDeleteCascade="true" schema="public" table="bridged_tokens"/>
+            <child column="token_contract_address_hash" foreignKey="token_instances_token_contract_address_hash_fkey" implied="false" onDeleteCascade="false" schema="public" table="token_instances"/>
+            <parent column="hash" foreignKey="tokens_contract_address_hash_fkey" implied="false" onDeleteCascade="true" schema="public" table="addresses"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="7" name="inserted_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="8" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="holder_count" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="bridged" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="skip_metadata" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
+         <primaryKey column="contract_address_hash" sequenceNumberInPK="1"/>
+         <index name="tokens_pkey" unique="true">
+            <column ascending="true" name="contract_address_hash"/>
+         </index>
+         <index name="tokens_contract_address_hash_index" unique="true">
+            <column ascending="true" name="contract_address_hash"/>
+         </index>
+         <index name="tokens_symbol_index" unique="false">
+            <column ascending="true" name="symbol"/>
+         </index>
+         <index name="tokens_trgm_idx" unique="false"/>
+         <index name="tokens_type_index" unique="false">
+            <column ascending="true" name="type"/>
+         </index>
+      </table>
+      <table name="transaction_forks" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="hash" nullable="false" remarks="" size="2147483647" type="bytea" typeCode="-2">
+            <parent column="hash" foreignKey="transaction_forks_hash_fkey" implied="false" onDeleteCascade="true" schema="public" table="transactions"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="index" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="uncle_hash" nullable="false" remarks="" size="2147483647" type="bytea" typeCode="-2">
+            <parent column="hash" foreignKey="transaction_forks_uncle_hash_fkey" implied="false" onDeleteCascade="true" schema="public" table="blocks"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="3" name="inserted_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="4" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <index name="transaction_forks_uncle_hash_index_index" unique="true">
+            <column ascending="true" name="uncle_hash"/>
+            <column ascending="true" name="index"/>
+         </index>
+      </table>
+      <table name="transaction_stats" numRows="10" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('transaction_stats_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="date" nullable="true" remarks="" size="13" type="date" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="number_of_transactions" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="gas_used" nullable="true" remarks="" size="100" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="total_fee" nullable="true" remarks="" size="100" type="numeric" typeCode="2"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="transaction_stats_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="transaction_stats_date_index" unique="true">
+            <column ascending="true" name="date"/>
+         </index>
+      </table>
+      <table name="transactions" numRows="1" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="cumulative_gas_used" nullable="true" remarks="" size="100" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="error" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="gas" nullable="false" remarks="" size="100" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="gas_price" nullable="false" remarks="" size="100" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="gas_used" nullable="true" remarks="" size="100" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="hash" nullable="false" remarks="" size="2147483647" type="bytea" typeCode="-2">
+            <child column="transaction_hash" foreignKey="internal_transactions_transaction_hash_fkey" implied="false" onDeleteCascade="true" schema="public" table="internal_transactions"/>
+            <child column="transaction_hash" foreignKey="logs_transaction_hash_fkey" implied="false" onDeleteCascade="true" schema="public" table="logs"/>
+            <child column="transaction_hash" foreignKey="token_transfers_transaction_hash_fkey" implied="false" onDeleteCascade="true" schema="public" table="token_transfers"/>
+            <child column="hash" foreignKey="transaction_forks_hash_fkey" implied="false" onDeleteCascade="true" schema="public" table="transaction_forks"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="index" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="input" nullable="false" remarks="" size="2147483647" type="bytea" typeCode="-2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="8" name="nonce" nullable="false" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="9" name="r" nullable="false" remarks="" size="100" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="s" nullable="false" remarks="" size="100" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="status" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="v" nullable="false" remarks="" size="100" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="value" nullable="false" remarks="" size="100" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="14" name="inserted_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="15" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="16" name="block_hash" nullable="true" remarks="" size="2147483647" type="bytea" typeCode="-2">
+            <parent column="hash" foreignKey="transactions_block_hash_fkey" implied="false" onDeleteCascade="true" schema="public" table="blocks"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="17" name="block_number" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="18" name="from_address_hash" nullable="false" remarks="" size="2147483647" type="bytea" typeCode="-2">
+            <parent column="hash" foreignKey="transactions_from_address_hash_fkey" implied="false" onDeleteCascade="true" schema="public" table="addresses"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="19" name="to_address_hash" nullable="true" remarks="" size="2147483647" type="bytea" typeCode="-2">
+            <parent column="hash" foreignKey="transactions_to_address_hash_fkey" implied="false" onDeleteCascade="true" schema="public" table="addresses"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="20" name="created_contract_address_hash" nullable="true" remarks="" size="2147483647" type="bytea" typeCode="-2">
+            <parent column="hash" foreignKey="transactions_created_contract_address_hash_fkey" implied="false" onDeleteCascade="false" schema="public" table="addresses"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="21" name="created_contract_code_indexed_at" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="22" name="earliest_processing_start" nullable="true" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="23" name="old_block_hash" nullable="true" remarks="" size="2147483647" type="bytea" typeCode="-2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="24" name="revert_reason" nullable="true" remarks="" size="2147483647" type="text" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="25" name="max_priority_fee_per_gas" nullable="true" remarks="" size="100" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="26" name="max_fee_per_gas" nullable="true" remarks="" size="100" type="numeric" typeCode="2"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="27" name="type" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="28" name="has_error_in_internal_txs" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
+         <primaryKey column="hash" sequenceNumberInPK="1"/>
+         <index name="transactions_pkey" unique="true">
+            <column ascending="true" name="hash"/>
+         </index>
+         <index name="pending_txs_index" unique="false">
+            <column ascending="true" name="inserted_at"/>
+            <column ascending="true" name="hash"/>
+         </index>
+         <index name="transactions_block_hash_error_index" unique="false">
+            <column ascending="true" name="block_hash"/>
+            <column ascending="true" name="error"/>
+         </index>
+         <index name="transactions_block_hash_index_index" unique="true">
+            <column ascending="true" name="block_hash"/>
+            <column ascending="true" name="index"/>
+         </index>
+         <index name="transactions_block_number_index" unique="false">
+            <column ascending="true" name="block_number"/>
+         </index>
+         <index name="transactions_created_contract_address_hash_recent_collated_inde" unique="false">
+            <column ascending="true" name="created_contract_address_hash"/>
+            <column ascending="false" name="block_number"/>
+            <column ascending="false" name="index"/>
+            <column ascending="true" name="hash"/>
+         </index>
+         <index name="transactions_created_contract_code_indexed_at_index" unique="false">
+            <column ascending="true" name="created_contract_code_indexed_at"/>
+         </index>
+         <index name="transactions_from_address_hash_recent_collated_index" unique="false">
+            <column ascending="true" name="from_address_hash"/>
+            <column ascending="false" name="block_number"/>
+            <column ascending="false" name="index"/>
+            <column ascending="true" name="hash"/>
+         </index>
+         <index name="transactions_inserted_at_index" unique="false">
+            <column ascending="true" name="inserted_at"/>
+         </index>
+         <index name="transactions_nonce_from_address_hash_block_hash_index" unique="false">
+            <column ascending="true" name="nonce"/>
+            <column ascending="true" name="from_address_hash"/>
+            <column ascending="true" name="block_hash"/>
+         </index>
+         <index name="transactions_recent_collated_index" unique="false">
+            <column ascending="false" name="block_number"/>
+            <column ascending="false" name="index"/>
+         </index>
+         <index name="transactions_status_index" unique="false">
+            <column ascending="true" name="status"/>
+         </index>
+         <index name="transactions_to_address_hash_recent_collated_index" unique="false">
+            <column ascending="true" name="to_address_hash"/>
+            <column ascending="false" name="block_number"/>
+            <column ascending="false" name="index"/>
+            <column ascending="true" name="hash"/>
+         </index>
+         <index name="transactions_updated_at_index" unique="false">
+            <column ascending="true" name="updated_at"/>
+         </index>
+         <checkConstraint constraint="(((block_hash IS NULL) OR (block_number IS NOT NULL)))" name="collated_block_number"/>
+         <checkConstraint constraint="(((block_hash IS NULL) OR (cumulative_gas_used IS NOT NULL)))" name="collated_cumalative_gas_used"/>
+         <checkConstraint constraint="(((block_hash IS NULL) OR (gas_used IS NOT NULL)))" name="collated_gas_used"/>
+         <checkConstraint constraint="(((block_hash IS NULL) OR (index IS NOT NULL)))" name="collated_index"/>
+         <checkConstraint constraint="(((status = 0) OR ((status &lt;&gt; 0) AND (error IS NULL))))" name="error"/>
+         <checkConstraint constraint="(((block_hash IS NOT NULL) OR (block_number IS NULL)))" name="pending_block_number"/>
+         <checkConstraint constraint="(((block_hash IS NOT NULL) OR (cumulative_gas_used IS NULL)))" name="pending_cumalative_gas_used"/>
+         <checkConstraint constraint="(((block_hash IS NOT NULL) OR (gas_used IS NULL)))" name="pending_gas_used"/>
+         <checkConstraint constraint="(((block_hash IS NOT NULL) OR (index IS NULL)))" name="pending_index"/>
+         <checkConstraint constraint="((((block_hash IS NULL) AND (status IS NULL)) OR (block_hash IS NOT NULL) OR ((status = 0) AND ((error)::text = 'dropped/replaced'::text))))" name="status"/>
+      </table>
+      <table name="user_contacts" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('user_contacts_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial" typeCode="-5"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="email" nullable="false" remarks="" size="2147483647" type="citext" typeCode="1111"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="user_id" nullable="false" remarks="" size="19" type="int8" typeCode="-5">
+            <parent column="id" foreignKey="user_contacts_user_id_fkey" implied="false" onDeleteCascade="true" schema="public" table="users"/>
+         </column>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="3" name="primary" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="false" digits="0" id="4" name="verified" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="5" name="inserted_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="6" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="user_contacts_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="email_unique_for_user" unique="true">
+            <column ascending="true" name="user_id"/>
+            <column ascending="true" name="email"/>
+         </index>
+         <index name="one_primary_per_user" unique="true">
+            <column ascending="true" name="user_id"/>
+         </index>
+      </table>
+      <table name="users" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('users_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial" typeCode="-5">
+            <child column="user_id" foreignKey="administrators_user_id_fkey" implied="false" onDeleteCascade="true" schema="public" table="administrators"/>
+            <child column="user_id" foreignKey="user_contacts_user_id_fkey" implied="false" onDeleteCascade="true" schema="public" table="user_contacts"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="username" nullable="false" remarks="" size="2147483647" type="citext" typeCode="1111"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="password_hash" nullable="false" remarks="" size="255" type="varchar" typeCode="12"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="3" name="inserted_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="6" id="4" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="users_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="unique_username" unique="true">
+            <column ascending="true" name="username"/>
+         </index>
+      </table>
+   </tables>
+</database>
