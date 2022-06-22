@@ -152,18 +152,6 @@ digraph "compactRelationshipsDiagram" {
     target="_top"
     tooltip="blocks"
   ];
-  "bridged_tokens" [
-   label=<
-    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>bridged_tokens</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="home_token_contract_address_hash" COLSPAN="3" BGCOLOR="#ffffff" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="../../images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="224" HEIGHT="16">home_token_contract_address_hash</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
-    </TABLE>>
-    URL="../../tables/bridged_tokens.html"
-    target="_top"
-    tooltip="bridged_tokens"
-  ];
   "decompiled_smart_contracts" [
    label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
@@ -299,7 +287,7 @@ digraph "compactRelationshipsDiagram" {
       <TR><TD PORT="type" COLSPAN="3" BGCOLOR="#ffffff" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="136" HEIGHT="16">type</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="contract_address_hash" COLSPAN="3" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="../../images/primaryKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="136" HEIGHT="16">contract_address_hash</TD></TR></TABLE></TD></TR>
       <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">4 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">3 &gt;</TD></TR>
     </TABLE>>
     URL="../../tables/tokens.html"
     target="_top"
@@ -381,7 +369,6 @@ digraph "compactRelationshipsDiagram" {
   "block_rewards":"block_hash":w -> "blocks":"hash":e [arrowhead=none dir=back arrowtail=crowodot];
   "block_second_degree_relations":"nephew_hash":w -> "blocks":"hash":e [arrowhead=none dir=back arrowtail=crowodot];
   "blocks":"miner_hash":w -> "addresses":"hash":e [arrowhead=none dir=back arrowtail=crowodot];
-  "bridged_tokens":"home_token_contract_address_hash":w -> "tokens":"contract_address_hash":e [arrowhead=none dir=back arrowtail=teeodot];
   "decompiled_smart_contracts":"address_hash":w -> "addresses":"hash":e [arrowhead=none dir=back arrowtail=crowodot];
   "internal_transactions":"block_hash":w -> "blocks":"hash":e [arrowhead=none dir=back arrowtail=crowodot];
   "internal_transactions":"created_contract_address_hash":w -> "addresses":"hash":e [arrowhead=none dir=back arrowtail=crowodot];

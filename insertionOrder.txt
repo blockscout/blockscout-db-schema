@@ -1,14 +1,13 @@
 addresses
 users
 blocks
-tokens
 transactions
+tokens
 smart_contracts
 address_coin_balances
 address_coin_balances_daily
 administrators
 block_second_degree_relations
-bridged_tokens
 decompiled_smart_contracts
 pending_block_operations
 smart_contracts_additional_sources

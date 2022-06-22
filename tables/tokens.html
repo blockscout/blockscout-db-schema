@@ -222,10 +222,6 @@
                                                 <td class="constraint detail">address_token_balances_token_contract_address_hash_fkey<span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
                                             </tr>
                                             <tr>
-                                                <td title="bridged_tokens.home_token_contract_address_hash references tokens.contract_address_hash via bridged_tokens_home_token_contract_address_hash_fkey"><a href='bridged_tokens.html'>bridged_tokens</a><span class='relatedKey'>.home_token_contract_address_hash</span></td>
-                                                <td class="constraint detail">bridged_tokens_home_token_contract_address_hash_fkey<span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
-                                            </tr>
-                                            <tr>
                                                 <td title="token_instances.token_contract_address_hash references tokens.contract_address_hash via token_instances_token_contract_address_hash_fkey"><a href='token_instances.html'>token_instances</a><span class='relatedKey'>.token_contract_address_hash</span></td>
                                                 <td class="constraint detail">token_instances_token_contract_address_hash_fkey<span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
                                             </tr>
@@ -279,23 +275,6 @@
                                     <td><span id="holder_count">holder_count</span></td>
                                     <td>int4</td>
                                     <td>10</td>
-                                    <td title='nullable'>√</td>
-                                    <td title=''></td>
-                                    <td>null</td>
-                                    <td>
-                                        <table border='0' cellspacing='0' cellpadding='0'>
-                                        </table>
-                                    </td>
-                                    <td>
-                                        <table border='0' cellspacing='0' cellpadding='0'>
-                                        </table>
-                                    </td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td><span id="bridged">bridged</span></td>
-                                    <td>bool</td>
-                                    <td>1</td>
                                     <td title='nullable'>√</td>
                                     <td title=''></td>
                                     <td>null</td>
@@ -403,33 +382,31 @@
                                 <div class="tab-content no-padding">
                                     <div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
-<area shape="rect" id="node1" href="../../tables/address_current_token_balances.html" target="_top" title="address_current_token_balances" alt="" coords="823,5,1155,269">
-<area shape="rect" id="node2" href="../../tables/addresses.html" target="_top" title="addresses" alt="" coords="5,295,344,471">
-<area shape="rect" id="node3" href="../../tables/tokens.html" target="_top" title="tokens" alt="" coords="388,145,771,567">
-<area shape="rect" id="node4" href="../../tables/address_token_balances.html" target="_top" title="address_token_balances" alt="" coords="847,615,1131,849">
-<area shape="rect" id="node5" href="../../tables/bridged_tokens.html" target="_top" title="bridged_tokens" alt="" coords="815,287,1163,404">
-<area shape="rect" id="node6" href="../../tables/token_instances.html" target="_top" title="token_instances" alt="" coords="847,421,1131,597">
+<area shape="rect" id="node1" href="../../tables/address_current_token_balances.html" target="_top" title="address_current_token_balances" alt="" coords="815,5,1147,269">
+<area shape="rect" id="node2" href="../../tables/addresses.html" target="_top" title="addresses" alt="" coords="5,287,344,463">
+<area shape="rect" id="node3" href="../../tables/tokens.html" target="_top" title="tokens" alt="" coords="388,137,771,529">
+<area shape="rect" id="node4" href="../../tables/address_token_balances.html" target="_top" title="address_token_balances" alt="" coords="839,480,1123,715">
+<area shape="rect" id="node5" href="../../tables/token_instances.html" target="_top" title="token_instances" alt="" coords="839,287,1123,463">
 </map>
                                         <a name='diagram'><object type="image/svg+xml" id="oneDegreeImg" data="../diagrams/tables/tokens.1degree.svg" class="diagram" border="0" align="left"></object></a>
                                     </div>
                                     <div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" href="../../tables/address_coin_balances.html" target="_top" title="address_coin_balances" alt="" coords="451,144,707,232">
-<area shape="rect" id="node2" href="../../tables/addresses.html" target="_top" title="addresses" alt="" coords="5,937,344,1113">
-<area shape="rect" id="node3" href="../../tables/address_coin_balances_daily.html" target="_top" title="address_coin_balances_daily" alt="" coords="429,249,729,337">
-<area shape="rect" id="node4" href="../../tables/address_current_token_balances.html" target="_top" title="address_current_token_balances" alt="" coords="823,5,1155,269">
-<area shape="rect" id="node5" href="../../tables/tokens.html" target="_top" title="tokens" alt="" coords="388,391,771,812">
-<area shape="rect" id="node6" href="../../tables/address_token_balances.html" target="_top" title="address_token_balances" alt="" coords="847,615,1131,849">
-<area shape="rect" id="node7" href="../../tables/block_rewards.html" target="_top" title="block_rewards" alt="" coords="891,935,1086,1023">
-<area shape="rect" id="node8" href="../../tables/blocks.html" target="_top" title="blocks" alt="" coords="510,1075,649,1163">
-<area shape="rect" id="node9" href="../../tables/bridged_tokens.html" target="_top" title="bridged_tokens" alt="" coords="815,287,1163,404">
-<area shape="rect" id="node10" href="../../tables/decompiled_smart_contracts.html" target="_top" title="decompiled_smart_contracts" alt="" coords="427,969,732,1057">
-<area shape="rect" id="node11" href="../../tables/internal_transactions.html" target="_top" title="internal_transactions" alt="" coords="1207,845,1456,933">
-<area shape="rect" id="node12" href="../../tables/transactions.html" target="_top" title="transactions" alt="" coords="898,1148,1079,1236">
-<area shape="rect" id="node13" href="../../tables/logs.html" target="_top" title="logs" alt="" coords="1269,1148,1394,1236">
-<area shape="rect" id="node14" href="../../tables/smart_contracts.html" target="_top" title="smart_contracts" alt="" coords="475,1284,684,1372">
-<area shape="rect" id="node15" href="../../tables/token_instances.html" target="_top" title="token_instances" alt="" coords="847,421,1131,597">
-<area shape="rect" id="node16" href="../../tables/token_transfers.html" target="_top" title="token_transfers" alt="" coords="1229,1368,1434,1456">
+<area shape="rect" id="node1" href="../../tables/address_coin_balances.html" target="_top" title="address_coin_balances" alt="" coords="451,40,707,128">
+<area shape="rect" id="node2" href="../../tables/addresses.html" target="_top" title="addresses" alt="" coords="5,804,344,980">
+<area shape="rect" id="node3" href="../../tables/address_coin_balances_daily.html" target="_top" title="address_coin_balances_daily" alt="" coords="429,145,729,233">
+<area shape="rect" id="node4" href="../../tables/address_current_token_balances.html" target="_top" title="address_current_token_balances" alt="" coords="815,5,1147,269">
+<area shape="rect" id="node5" href="../../tables/tokens.html" target="_top" title="tokens" alt="" coords="388,287,771,679">
+<area shape="rect" id="node6" href="../../tables/address_token_balances.html" target="_top" title="address_token_balances" alt="" coords="839,480,1123,715">
+<area shape="rect" id="node7" href="../../tables/block_rewards.html" target="_top" title="block_rewards" alt="" coords="883,800,1078,888">
+<area shape="rect" id="node8" href="../../tables/blocks.html" target="_top" title="blocks" alt="" coords="510,941,649,1029">
+<area shape="rect" id="node9" href="../../tables/decompiled_smart_contracts.html" target="_top" title="decompiled_smart_contracts" alt="" coords="427,836,732,924">
+<area shape="rect" id="node10" href="../../tables/internal_transactions.html" target="_top" title="internal_transactions" alt="" coords="1191,711,1440,799">
+<area shape="rect" id="node11" href="../../tables/transactions.html" target="_top" title="transactions" alt="" coords="890,1015,1071,1103">
+<area shape="rect" id="node12" href="../../tables/logs.html" target="_top" title="logs" alt="" coords="1253,1015,1378,1103">
+<area shape="rect" id="node13" href="../../tables/smart_contracts.html" target="_top" title="smart_contracts" alt="" coords="475,1151,684,1239">
+<area shape="rect" id="node14" href="../../tables/token_instances.html" target="_top" title="token_instances" alt="" coords="839,287,1123,463">
+<area shape="rect" id="node15" href="../../tables/token_transfers.html" target="_top" title="token_transfers" alt="" coords="1213,1235,1418,1323">
 </map>
                                         <a name='diagram'><object type="image/svg+xml" id="twodegreesDegreeImg" data="../diagrams/tables/tokens.2degrees.svg" class="diagram" border="0" align="left"></object></a>
                                     </div>

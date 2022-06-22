@@ -18,14 +18,13 @@ token_instances
 smart_contracts_additional_sources
 pending_block_operations
 decompiled_smart_contracts
-bridged_tokens
 block_second_degree_relations
 administrators
 address_coin_balances_daily
 address_coin_balances
 smart_contracts
-transactions
 tokens
+transactions
 blocks
 users
 addresses
