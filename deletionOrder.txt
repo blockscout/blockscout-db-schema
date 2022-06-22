@@ -1,6 +1,4 @@
 transaction_stats
-staking_pools_delegators
-staking_pools
 schema_migrations
 market_history
 last_fetched_counters

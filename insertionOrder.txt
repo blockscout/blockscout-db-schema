@@ -28,6 +28,4 @@ emission_rewards
 last_fetched_counters
 market_history
 schema_migrations
-staking_pools
-staking_pools_delegators
 transaction_stats

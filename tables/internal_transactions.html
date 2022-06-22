@@ -591,24 +591,24 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>create_has_error_or_result</td>
-                                    <td>((((type)::text &lt;&gt; &#39;create&#39;::text) OR ((gas IS NOT NULL) AND (((error IS NULL) AND (created_contract_address_hash IS NOT NULL) AND (created_contract_code IS NOT NULL) AND (gas_used IS NOT NULL)) OR ((error IS NOT NULL) AND (created_contract_address_hash IS NULL) AND (created_contract_code IS NULL) AND (gas_used IS NULL))))))</td>
+                                    <td>create_has_init</td>
+                                    <td>((((type)::text &lt;&gt; &#39;create&#39;::text) OR (init IS NOT NULL))) NOT VALID</td>
                                 </tr>
                                 <tr>
                                     <td>call_has_call_type</td>
                                     <td>((((type)::text &lt;&gt; &#39;call&#39;::text) OR (call_type IS NOT NULL))) NOT VALID</td>
                                 </tr>
                                 <tr>
-                                    <td>create_has_init</td>
-                                    <td>((((type)::text &lt;&gt; &#39;create&#39;::text) OR (init IS NOT NULL))) NOT VALID</td>
+                                    <td>call_has_input</td>
+                                    <td>((((type)::text &lt;&gt; &#39;call&#39;::text) OR (input IS NOT NULL))) NOT VALID</td>
+                                </tr>
+                                <tr>
+                                    <td>create_has_error_or_result</td>
+                                    <td>((((type)::text &lt;&gt; &#39;create&#39;::text) OR ((gas IS NOT NULL) AND (((error IS NULL) AND (created_contract_address_hash IS NOT NULL) AND (created_contract_code IS NOT NULL) AND (gas_used IS NOT NULL)) OR ((error IS NOT NULL) AND (created_contract_address_hash IS NULL) AND (created_contract_code IS NULL) AND (gas_used IS NULL))))))</td>
                                 </tr>
                                 <tr>
                                     <td>call_has_error_or_result</td>
                                     <td>((((type)::text &lt;&gt; &#39;call&#39;::text) OR ((gas IS NOT NULL) AND (((error IS NULL) AND (gas_used IS NOT NULL) AND (output IS NOT NULL)) OR ((error IS NOT NULL) AND (gas_used IS NULL) AND (output IS NULL))))))</td>
-                                </tr>
-                                <tr>
-                                    <td>call_has_input</td>
-                                    <td>((((type)::text &lt;&gt; &#39;call&#39;::text) OR (input IS NOT NULL))) NOT VALID</td>
                                 </tr>
                                 <tr>
                                     <td>selfdestruct_has_from_and_to_address</td>

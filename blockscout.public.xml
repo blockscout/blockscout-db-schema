@@ -9,8 +9,6 @@
       <sequence increment="1" name="market_history_id_seq" startValue="1"/>
       <sequence increment="1" name="smart_contracts_additional_sources_id_seq" startValue="1"/>
       <sequence increment="1" name="smart_contracts_id_seq" startValue="1"/>
-      <sequence increment="1" name="staking_pools_delegators_id_seq" startValue="1"/>
-      <sequence increment="1" name="staking_pools_id_seq" startValue="1"/>
       <sequence increment="1" name="transaction_stats_id_seq" startValue="1"/>
       <sequence increment="1" name="user_contacts_id_seq" startValue="1"/>
       <sequence increment="1" name="users_id_seq" startValue="1"/>
@@ -602,7 +600,7 @@
             <column ascending="true" name="block_hash"/>
          </index>
       </table>
-      <table name="schema_migrations" numRows="151" remarks="" schema="public" type="TABLE">
+      <table name="schema_migrations" numRows="152" remarks="" schema="public" type="TABLE">
          <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="version" nullable="false" remarks="" size="19" type="int8" typeCode="-5"/>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="inserted_at" nullable="true" remarks="" size="22" type="timestamp" typeCode="93"/>
          <primaryKey column="version" sequenceNumberInPK="1"/>
@@ -661,76 +659,6 @@
          </index>
          <index name="smart_contracts_additional_sources_address_hash_index" unique="false">
             <column ascending="true" name="address_hash"/>
-         </index>
-      </table>
-      <table name="staking_pools" numRows="0" remarks="" schema="public" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('staking_pools_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial" typeCode="-5"/>
-         <column autoUpdated="false" defaultValue="false" digits="0" id="1" name="are_delegators_banned" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="banned_delegators_until" nullable="true" remarks="" size="19" type="int8" typeCode="-5"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="banned_until" nullable="true" remarks="" size="19" type="int8" typeCode="-5"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="ban_reason" nullable="true" remarks="" size="255" type="varchar" typeCode="12"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="delegators_count" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
-         <column autoUpdated="false" defaultValue="false" digits="0" id="6" name="is_active" nullable="false" remarks="" size="1" type="bool" typeCode="-7"/>
-         <column autoUpdated="false" defaultValue="false" digits="0" id="7" name="is_banned" nullable="false" remarks="" size="1" type="bool" typeCode="-7"/>
-         <column autoUpdated="false" defaultValue="false" digits="0" id="8" name="is_deleted" nullable="false" remarks="" size="1" type="bool" typeCode="-7"/>
-         <column autoUpdated="false" defaultValue="false" digits="0" id="9" name="is_unremovable" nullable="false" remarks="" size="1" type="bool" typeCode="-7"/>
-         <column autoUpdated="false" defaultValue="false" digits="0" id="10" name="is_validator" nullable="false" remarks="" size="1" type="bool" typeCode="-7"/>
-         <column autoUpdated="false" defaultValue="null" digits="2" id="11" name="likelihood" nullable="true" remarks="" size="5" type="numeric" typeCode="2"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="mining_address_hash" nullable="true" remarks="" size="2147483647" type="bytea" typeCode="-2"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="13" name="self_staked_amount" nullable="true" remarks="" size="100" type="numeric" typeCode="2"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="14" name="snapshotted_self_staked_amount" nullable="true" remarks="" size="100" type="numeric" typeCode="2"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="15" name="snapshotted_total_staked_amount" nullable="true" remarks="" size="100" type="numeric" typeCode="2"/>
-         <column autoUpdated="false" defaultValue="null" digits="2" id="16" name="snapshotted_validator_reward_ratio" nullable="true" remarks="" size="5" type="numeric" typeCode="2"/>
-         <column autoUpdated="false" defaultValue="null" digits="2" id="17" name="stakes_ratio" nullable="true" remarks="" size="5" type="numeric" typeCode="2"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="18" name="staking_address_hash" nullable="true" remarks="" size="2147483647" type="bytea" typeCode="-2"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="19" name="total_staked_amount" nullable="true" remarks="" size="100" type="numeric" typeCode="2"/>
-         <column autoUpdated="false" defaultValue="null" digits="2" id="20" name="validator_reward_percent" nullable="true" remarks="" size="5" type="numeric" typeCode="2"/>
-         <column autoUpdated="false" defaultValue="null" digits="2" id="21" name="validator_reward_ratio" nullable="true" remarks="" size="5" type="numeric" typeCode="2"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="22" name="was_banned_count" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="23" name="was_validator_count" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
-         <column autoUpdated="false" defaultValue="null" digits="6" id="24" name="inserted_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
-         <column autoUpdated="false" defaultValue="null" digits="6" id="25" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="26" name="name" nullable="true" remarks="" size="256" type="varchar" typeCode="12"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="27" name="description" nullable="true" remarks="" size="1024" type="varchar" typeCode="12"/>
-         <primaryKey column="id" sequenceNumberInPK="1"/>
-         <index name="staking_pools_pkey" unique="true">
-            <column ascending="true" name="id"/>
-         </index>
-         <index name="staking_pools_mining_address_hash_index" unique="false">
-            <column ascending="true" name="mining_address_hash"/>
-         </index>
-         <index name="staking_pools_staking_address_hash_index" unique="true">
-            <column ascending="true" name="staking_address_hash"/>
-         </index>
-      </table>
-      <table name="staking_pools_delegators" numRows="0" remarks="" schema="public" type="TABLE">
-         <column autoUpdated="true" defaultValue="nextval('staking_pools_delegators_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="19" type="bigserial" typeCode="-5"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="address_hash" nullable="true" remarks="" size="2147483647" type="bytea" typeCode="-2"/>
-         <column autoUpdated="false" defaultValue="true" digits="0" id="2" name="is_active" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
-         <column autoUpdated="false" defaultValue="false" digits="0" id="3" name="is_deleted" nullable="true" remarks="" size="1" type="bool" typeCode="-7"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="max_ordered_withdraw_allowed" nullable="true" remarks="" size="100" type="numeric" typeCode="2"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="max_withdraw_allowed" nullable="true" remarks="" size="100" type="numeric" typeCode="2"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="ordered_withdraw" nullable="true" remarks="" size="100" type="numeric" typeCode="2"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="ordered_withdraw_epoch" nullable="true" remarks="" size="10" type="int4" typeCode="4"/>
-         <column autoUpdated="false" defaultValue="null" digits="2" id="8" name="reward_ratio" nullable="true" remarks="" size="5" type="numeric" typeCode="2"/>
-         <column autoUpdated="false" defaultValue="null" digits="2" id="9" name="snapshotted_reward_ratio" nullable="true" remarks="" size="5" type="numeric" typeCode="2"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="10" name="snapshotted_stake_amount" nullable="true" remarks="" size="100" type="numeric" typeCode="2"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="11" name="stake_amount" nullable="true" remarks="" size="100" type="numeric" typeCode="2"/>
-         <column autoUpdated="false" defaultValue="null" digits="0" id="12" name="staking_address_hash" nullable="true" remarks="" size="2147483647" type="bytea" typeCode="-2"/>
-         <column autoUpdated="false" defaultValue="null" digits="6" id="13" name="inserted_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
-         <column autoUpdated="false" defaultValue="null" digits="6" id="14" name="updated_at" nullable="false" remarks="" size="29" type="timestamp" typeCode="93"/>
-         <primaryKey column="id" sequenceNumberInPK="1"/>
-         <index name="staking_pools_delegators_pkey" unique="true">
-            <column ascending="true" name="id"/>
-         </index>
-         <index name="pools_delegator_index" unique="true">
-            <column ascending="true" name="address_hash"/>
-            <column ascending="true" name="staking_address_hash"/>
-         </index>
-         <index name="snapshotted_stake_amount_index" unique="false">
-            <column ascending="true" name="staking_address_hash"/>
-            <column ascending="true" name="snapshotted_stake_amount"/>
-            <column ascending="true" name="is_active"/>
          </index>
       </table>
       <table name="token_instances" numRows="0" remarks="" schema="public" type="TABLE">
