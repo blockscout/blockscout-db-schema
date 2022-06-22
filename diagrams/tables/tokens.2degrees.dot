@@ -27,7 +27,6 @@ digraph "twoDegreesRelationshipsDiagram" {
   "block_rewards":"elipses":w -> "addresses":"hash":e [arrowhead=none dir=back arrowtail=crowodot];
   "block_rewards":"elipses":w -> "blocks":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
   "blocks":"elipses":w -> "addresses":"hash":e [arrowhead=none dir=back arrowtail=crowodot];
-  "bridged_tokens":"home_token_contract_address_hash":w -> "tokens":"contract_address_hash.type":e [arrowhead=none dir=back arrowtail=teeodot];
   "decompiled_smart_contracts":"elipses":w -> "addresses":"hash":e [arrowhead=none dir=back arrowtail=crowodot];
   "internal_transactions":"elipses":w -> "blocks":"elipses":e [arrowhead=none dir=back arrowtail=crowodot];
   "internal_transactions":"elipses":w -> "addresses":"hash":e [arrowhead=none dir=back arrowtail=crowodot];
@@ -140,18 +139,6 @@ digraph "twoDegreesRelationshipsDiagram" {
     target="_top"
     tooltip="blocks"
   ];
-  "bridged_tokens" [
-   label=<
-    <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
-      <TR><TD COLSPAN="3"  BGCOLOR="#f5f5f5"><TABLE BORDER="0" CELLSPACING="0"><TR><TD ALIGN="LEFT"><B>bridged_tokens</B></TD><TD ALIGN="RIGHT">[table]</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="home_token_contract_address_hash" COLSPAN="3" BGCOLOR="#ffffff" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"><IMG SRC="../../images/foreignKeys.png"/></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="224" HEIGHT="16">home_token_contract_address_hash</TD></TR></TABLE></TD></TR>
-      <TR><TD PORT="elipses" COLSPAN="3" ALIGN="LEFT">...</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">  </TD></TR>
-    </TABLE>>
-    URL="../../tables/bridged_tokens.html"
-    target="_top"
-    tooltip="bridged_tokens"
-  ];
   "decompiled_smart_contracts" [
    label=<
     <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" BGCOLOR="#ffffff">
@@ -235,9 +222,8 @@ digraph "twoDegreesRelationshipsDiagram" {
       <TR><TD PORT="inserted_at" COLSPAN="2" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="136" HEIGHT="16">inserted_at</TD></TR></TABLE></TD><TD PORT="inserted_at.type" ALIGN="LEFT">timestamp[29,6]</TD></TR>
       <TR><TD PORT="updated_at" COLSPAN="2" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="136" HEIGHT="16">updated_at</TD></TR></TABLE></TD><TD PORT="updated_at.type" ALIGN="LEFT">timestamp[29,6]</TD></TR>
       <TR><TD PORT="holder_count" COLSPAN="2" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="136" HEIGHT="16">holder_count</TD></TR></TABLE></TD><TD PORT="holder_count.type" ALIGN="LEFT">int4[10]</TD></TR>
-      <TR><TD PORT="bridged" COLSPAN="2" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="136" HEIGHT="16">bridged</TD></TR></TABLE></TD><TD PORT="bridged.type" ALIGN="LEFT">bool[1]</TD></TR>
       <TR><TD PORT="skip_metadata" COLSPAN="2" ALIGN="LEFT"><TABLE BORDER="0" CELLSPACING="0" ALIGN="LEFT"><TR ALIGN="LEFT"><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="15" HEIGHT="16"></TD><TD ALIGN="LEFT" FIXEDSIZE="TRUE" WIDTH="136" HEIGHT="16">skip_metadata</TD></TR></TABLE></TD><TD PORT="skip_metadata.type" ALIGN="LEFT">bool[1]</TD></TR>
-      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">4 &gt;</TD></TR>
+      <TR><TD ALIGN="LEFT" BGCOLOR="#ffffff">&lt; 1</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">0 rows</TD><TD ALIGN="RIGHT" BGCOLOR="#ffffff">3 &gt;</TD></TR>
     </TABLE>>
     URL="../../tables/tokens.html"
     target="_top"

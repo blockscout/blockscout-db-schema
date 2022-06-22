@@ -758,44 +758,44 @@
                                 </thead>
                                 <tbody>
                                 <tr>
+                                    <td>pending_block_number</td>
+                                    <td>(((block_hash IS NOT NULL) OR (block_number IS NULL)))</td>
+                                </tr>
+                                <tr>
+                                    <td>status</td>
+                                    <td>((((block_hash IS NULL) AND (status IS NULL)) OR (block_hash IS NOT NULL) OR ((status = 0) AND ((error)::text = &#39;dropped/replaced&#39;::text))))</td>
+                                </tr>
+                                <tr>
                                     <td>pending_index</td>
                                     <td>(((block_hash IS NOT NULL) OR (index IS NULL)))</td>
-                                </tr>
-                                <tr>
-                                    <td>error</td>
-                                    <td>(((status = 0) OR ((status &lt;&gt; 0) AND (error IS NULL))))</td>
-                                </tr>
-                                <tr>
-                                    <td>pending_gas_used</td>
-                                    <td>(((block_hash IS NOT NULL) OR (gas_used IS NULL)))</td>
                                 </tr>
                                 <tr>
                                     <td>collated_block_number</td>
                                     <td>(((block_hash IS NULL) OR (block_number IS NOT NULL)))</td>
                                 </tr>
                                 <tr>
-                                    <td>collated_index</td>
-                                    <td>(((block_hash IS NULL) OR (index IS NOT NULL)))</td>
-                                </tr>
-                                <tr>
-                                    <td>pending_block_number</td>
-                                    <td>(((block_hash IS NOT NULL) OR (block_number IS NULL)))</td>
+                                    <td>error</td>
+                                    <td>(((status = 0) OR ((status &lt;&gt; 0) AND (error IS NULL))))</td>
                                 </tr>
                                 <tr>
                                     <td>collated_cumalative_gas_used</td>
                                     <td>(((block_hash IS NULL) OR (cumulative_gas_used IS NOT NULL)))</td>
                                 </tr>
                                 <tr>
-                                    <td>pending_cumalative_gas_used</td>
-                                    <td>(((block_hash IS NOT NULL) OR (cumulative_gas_used IS NULL)))</td>
-                                </tr>
-                                <tr>
                                     <td>collated_gas_used</td>
                                     <td>(((block_hash IS NULL) OR (gas_used IS NOT NULL)))</td>
                                 </tr>
                                 <tr>
-                                    <td>status</td>
-                                    <td>((((block_hash IS NULL) AND (status IS NULL)) OR (block_hash IS NOT NULL) OR ((status = 0) AND ((error)::text = &#39;dropped/replaced&#39;::text))))</td>
+                                    <td>pending_cumalative_gas_used</td>
+                                    <td>(((block_hash IS NOT NULL) OR (cumulative_gas_used IS NULL)))</td>
+                                </tr>
+                                <tr>
+                                    <td>collated_index</td>
+                                    <td>(((block_hash IS NULL) OR (index IS NOT NULL)))</td>
+                                </tr>
+                                <tr>
+                                    <td>pending_gas_used</td>
+                                    <td>(((block_hash IS NOT NULL) OR (gas_used IS NULL)))</td>
                                 </tr>
                                 </tbody>
                             </table>
