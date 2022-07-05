@@ -4,7 +4,7 @@ Blockscout DB schema generated with ShemaSpy
 https://blockscout.github.io/blockscout-db-schema/index.html
 
 ## Columns
-https://blockscout.github.io/blockscout-db-schema/constraints.html
+https://blockscout.github.io/blockscout-db-schema/columns.html
 
 ## Constraints
 https://blockscout.github.io/blockscout-db-schema/constraints.html
