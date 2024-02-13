@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>transactions - blockscout Database</title>
+        <title>transactions - blockscout.public</title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <link rel="icon" type="image/png" sizes="16x16" href="../favicon.png">
@@ -46,7 +46,7 @@
                 <nav class="navbar navbar-static-top">
                     <div class="container">
                         <div class="navbar-header">
-                            <a href="../index.html" class="navbar-brand"><b>blockscout</b> Database</a>
+                            <a href="../index.html" class="navbar-brand"><b>blockscout</b></a><span class="navbar-brand" style="padding-left: 0">.public</span>
                             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse"><i class="fa fa-bars"></i></button>
                         </div>
 
@@ -73,7 +73,7 @@
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
-                    <h1>transactions</h1><p><span id="recordNumber">1</span> rows</p><br />
+                    <h1>transactions</h1><p><span id="recordNumber">-1</span> rows</p><br />
                 </section>
                 <!-- Main content -->
                 <section class="content">
@@ -87,7 +87,13 @@
                             </div>
                         </div>
                         <div class="box-body">
-                            <table id="standard_table" class="table table-bordered table-striped dataTable" role="grid">
+                            <table
+                                    id="standard_table"
+                                    class="table table-bordered table-striped dataTable"
+                                    role="grid"
+                                    data-paging="true"
+                                    data-page-length="10"
+                                    data-length-change="false">
                                 <thead align='left'>
                                 <tr>
                                     <th>Column</th>
@@ -157,7 +163,7 @@
                                     <td><span id="gas_price">gas_price</span></td>
                                     <td>numeric</td>
                                     <td>100</td>
-                                    <td title=''></td>
+                                    <td title='nullable'>√</td>
                                     <td title=''></td>
                                     <td>null</td>
                                     <td>
@@ -198,19 +204,28 @@
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                             <tr>
                                                 <td title="internal_transactions.transaction_hash references transactions.hash via internal_transactions_transaction_hash_fkey"><a href='internal_transactions.html'>internal_transactions</a><span class='relatedKey'>.transaction_hash</span></td>
-                                                <td class="constraint detail">internal_transactions_transaction_hash_fkey<span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
+                                                <td class="constraint detail">internal_transactions_transaction_hash_fkey</td>
+                                                <td class="constraint detail"><span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
                                             </tr>
                                             <tr>
                                                 <td title="logs.transaction_hash references transactions.hash via logs_transaction_hash_fkey"><a href='logs.html'>logs</a><span class='relatedKey'>.transaction_hash</span></td>
-                                                <td class="constraint detail">logs_transaction_hash_fkey<span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
+                                                <td class="constraint detail">logs_transaction_hash_fkey</td>
+                                                <td class="constraint detail"><span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
                                             </tr>
                                             <tr>
                                                 <td title="token_transfers.transaction_hash references transactions.hash via token_transfers_transaction_hash_fkey"><a href='token_transfers.html'>token_transfers</a><span class='relatedKey'>.transaction_hash</span></td>
-                                                <td class="constraint detail">token_transfers_transaction_hash_fkey<span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
+                                                <td class="constraint detail">token_transfers_transaction_hash_fkey</td>
+                                                <td class="constraint detail"><span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td title="transaction_actions.hash references transactions.hash via transaction_actions_hash_fkey"><a href='transaction_actions.html'>transaction_actions</a><span class='relatedKey'>.hash</span></td>
+                                                <td class="constraint detail">transaction_actions_hash_fkey</td>
+                                                <td class="constraint detail"><span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
                                             </tr>
                                             <tr>
                                                 <td title="transaction_forks.hash references transactions.hash via transaction_forks_hash_fkey"><a href='transaction_forks.html'>transaction_forks</a><span class='relatedKey'>.hash</span></td>
-                                                <td class="constraint detail">transaction_forks_hash_fkey<span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
+                                                <td class="constraint detail">transaction_forks_hash_fkey</td>
+                                                <td class="constraint detail"><span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
                                             </tr>
                                         </table>
                                     </td>
@@ -221,7 +236,7 @@
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i><span id="index">index</span></td>
+                                    <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="index">index</span></td>
                                     <td>int4</td>
                                     <td>10</td>
                                     <td title='nullable'>√</td>
@@ -233,6 +248,11 @@
                                     </td>
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
+                                            <tr>
+                                                <td title="transactions.index&#39;s name implies that it&#39;s a child of withdrawals.index, but it doesn&#39;t reference that column."><a href='withdrawals.html'>withdrawals</a><span class='relatedKey'>.index</span></td>
+                                                <td class="constraint detail">Implied Constraint</td>
+                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                            </tr>
                                         </table>
                                     </td>
                                     <td></td>
@@ -405,7 +425,8 @@
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                             <tr>
                                                 <td title="transactions.block_hash references blocks.hash via transactions_block_hash_fkey"><a href='blocks.html'>blocks</a><span class='relatedKey'>.hash</span></td>
-                                                <td class="constraint detail">transactions_block_hash_fkey<span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
+                                                <td class="constraint detail">transactions_block_hash_fkey</td>
+                                                <td class="constraint detail"><span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
                                             </tr>
                                         </table>
                                     </td>
@@ -429,7 +450,7 @@
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="from_address_hash">from_address_hash</span></td>
+                                    <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i><span id="from_address_hash">from_address_hash</span></td>
                                     <td>bytea</td>
                                     <td>2147483647</td>
                                     <td title=''></td>
@@ -441,16 +462,12 @@
                                     </td>
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
-                                            <tr>
-                                                <td title="transactions.from_address_hash references addresses.hash via transactions_from_address_hash_fkey"><a href='addresses.html'>addresses</a><span class='relatedKey'>.hash</span></td>
-                                                <td class="constraint detail">transactions_from_address_hash_fkey<span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
-                                            </tr>
                                         </table>
                                     </td>
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="to_address_hash">to_address_hash</span></td>
+                                    <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i><span id="to_address_hash">to_address_hash</span></td>
                                     <td>bytea</td>
                                     <td>2147483647</td>
                                     <td title='nullable'>√</td>
@@ -462,16 +479,12 @@
                                     </td>
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
-                                            <tr>
-                                                <td title="transactions.to_address_hash references addresses.hash via transactions_to_address_hash_fkey"><a href='addresses.html'>addresses</a><span class='relatedKey'>.hash</span></td>
-                                                <td class="constraint detail">transactions_to_address_hash_fkey<span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
-                                            </tr>
                                         </table>
                                     </td>
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="created_contract_address_hash">created_contract_address_hash</span></td>
+                                    <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i><span id="created_contract_address_hash">created_contract_address_hash</span></td>
                                     <td>bytea</td>
                                     <td>2147483647</td>
                                     <td title='nullable'>√</td>
@@ -483,10 +496,6 @@
                                     </td>
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
-                                            <tr>
-                                                <td title="transactions.created_contract_address_hash references addresses.hash via transactions_created_contract_address_hash_fkey"><a href='addresses.html'>addresses</a><span class='relatedKey'>.hash</span></td>
-                                                <td class="constraint detail">transactions_created_contract_address_hash_fkey<span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
-                                            </tr>
                                         </table>
                                     </td>
                                     <td></td>
@@ -627,6 +636,40 @@
                                     </td>
                                     <td></td>
                                 </tr>
+                                <tr>
+                                    <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i><span id="block_timestamp">block_timestamp</span></td>
+                                    <td>timestamp</td>
+                                    <td>29,6</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i><span id="block_consensus">block_consensus</span></td>
+                                    <td>bool</td>
+                                    <td>1</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>true</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td></td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -641,7 +684,13 @@
                             </div>
                         </div>
                         <div class="box-body">
-                            <table id="indexes_table" class="table table-bordered table-striped dataTable" role="grid">
+                            <table
+                                    id="indexes_table"
+                                    class="table table-bordered table-striped dataTable"
+                                    role="grid"
+                                    data-paging="true"
+                                    data-page-length="10"
+                                    data-length-change="false">
                                 <thead>
                                 <tr>
                                     <th>Constraint Name</th>
@@ -658,10 +707,22 @@
                                     <td>hash</td>
                                 </tr>
                                 <tr>
+                                    <td title='Indexed'>method_id</td>
+                                    <td>Performance</td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
                                     <td title='Indexed'>pending_txs_index</td>
                                     <td>Performance</td>
                                     <td><span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span></td>
                                     <td>inserted_at + hash</td>
+                                </tr>
+                                <tr>
+                                    <td title='Indexed'>transactions_block_consensus_index</td>
+                                    <td>Performance</td>
+                                    <td><span title='Ascending'>Asc</span></td>
+                                    <td>block_consensus</td>
                                 </tr>
                                 <tr>
                                     <td title='Indexed'>transactions_block_hash_error_index</td>
@@ -682,10 +743,22 @@
                                     <td>block_number</td>
                                 </tr>
                                 <tr>
-                                    <td title='Indexed'>transactions_created_contract_address_hash_recent_collated_inde</td>
+                                    <td title='Indexed'>transactions_block_timestamp_index</td>
                                     <td>Performance</td>
-                                    <td><span title='Ascending'>Asc</span>/<span title='Descending'>Desc</span>/<span title='Descending'>Desc</span>/<span title='Ascending'>Asc</span></td>
-                                    <td>created_contract_address_hash + block_number + index + hash</td>
+                                    <td><span title='Ascending'>Asc</span></td>
+                                    <td>block_timestamp</td>
+                                </tr>
+                                <tr>
+                                    <td title='Indexed'>transactions_created_contract_address_hash_with_pending_index</td>
+                                    <td>Performance</td>
+                                    <td><span title='Ascending'>Asc</span>/<span title='Descending'>Desc</span>/<span title='Descending'>Desc</span>/<span title='Descending'>Desc</span>/<span title='Ascending'>Asc</span></td>
+                                    <td>created_contract_address_hash + block_number + index + inserted_at + hash</td>
+                                </tr>
+                                <tr>
+                                    <td title='Indexed'>transactions_created_contract_address_hash_with_pending_index_a</td>
+                                    <td>Performance</td>
+                                    <td><span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span>/<span title='Descending'>Desc</span></td>
+                                    <td>created_contract_address_hash + block_number + index + inserted_at + hash</td>
                                 </tr>
                                 <tr>
                                     <td title='Indexed'>transactions_created_contract_code_indexed_at_index</td>
@@ -694,10 +767,16 @@
                                     <td>created_contract_code_indexed_at</td>
                                 </tr>
                                 <tr>
-                                    <td title='Indexed'>transactions_from_address_hash_recent_collated_index</td>
+                                    <td title='Indexed'>transactions_from_address_hash_with_pending_index</td>
                                     <td>Performance</td>
-                                    <td><span title='Ascending'>Asc</span>/<span title='Descending'>Desc</span>/<span title='Descending'>Desc</span>/<span title='Ascending'>Asc</span></td>
-                                    <td>from_address_hash + block_number + index + hash</td>
+                                    <td><span title='Ascending'>Asc</span>/<span title='Descending'>Desc</span>/<span title='Descending'>Desc</span>/<span title='Descending'>Desc</span>/<span title='Ascending'>Asc</span></td>
+                                    <td>from_address_hash + block_number + index + inserted_at + hash</td>
+                                </tr>
+                                <tr>
+                                    <td title='Indexed'>transactions_from_address_hash_with_pending_index_asc</td>
+                                    <td>Performance</td>
+                                    <td><span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span>/<span title='Descending'>Desc</span></td>
+                                    <td>from_address_hash + block_number + index + inserted_at + hash</td>
                                 </tr>
                                 <tr>
                                     <td title='Indexed'>transactions_inserted_at_index</td>
@@ -724,10 +803,16 @@
                                     <td>status</td>
                                 </tr>
                                 <tr>
-                                    <td title='Indexed'>transactions_to_address_hash_recent_collated_index</td>
+                                    <td title='Indexed'>transactions_to_address_hash_with_pending_index</td>
                                     <td>Performance</td>
-                                    <td><span title='Ascending'>Asc</span>/<span title='Descending'>Desc</span>/<span title='Descending'>Desc</span>/<span title='Ascending'>Asc</span></td>
-                                    <td>to_address_hash + block_number + index + hash</td>
+                                    <td><span title='Ascending'>Asc</span>/<span title='Descending'>Desc</span>/<span title='Descending'>Desc</span>/<span title='Descending'>Desc</span>/<span title='Ascending'>Asc</span></td>
+                                    <td>to_address_hash + block_number + index + inserted_at + hash</td>
+                                </tr>
+                                <tr>
+                                    <td title='Indexed'>transactions_to_address_hash_with_pending_index_asc</td>
+                                    <td>Performance</td>
+                                    <td><span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span>/<span title='Descending'>Desc</span></td>
+                                    <td>to_address_hash + block_number + index + inserted_at + hash</td>
                                 </tr>
                                 <tr>
                                     <td title='Indexed'>transactions_updated_at_index</td>
@@ -749,7 +834,13 @@
                             </div>
                         </div>
                         <div class="box-body">
-                            <table id="check_table" class="table table-bordered table-striped dataTable" role="grid">
+                            <table
+                                    id="check_table"
+                                    class="table table-bordered table-striped dataTable"
+                                    role="grid"
+                                    data-paging="true"
+                                    data-page-length="10"
+                                    data-length-change="false">
                                 <thead align='left'>
                                 <tr>
                                     <th>Constraint Name</th>
@@ -762,40 +853,44 @@
                                     <td>(((block_hash IS NOT NULL) OR (block_number IS NULL)))</td>
                                 </tr>
                                 <tr>
-                                    <td>status</td>
-                                    <td>((((block_hash IS NULL) AND (status IS NULL)) OR (block_hash IS NOT NULL) OR ((status = 0) AND ((error)::text = &#39;dropped/replaced&#39;::text))))</td>
-                                </tr>
-                                <tr>
-                                    <td>pending_index</td>
-                                    <td>(((block_hash IS NOT NULL) OR (index IS NULL)))</td>
-                                </tr>
-                                <tr>
                                     <td>collated_block_number</td>
                                     <td>(((block_hash IS NULL) OR (block_number IS NOT NULL)))</td>
                                 </tr>
                                 <tr>
-                                    <td>error</td>
-                                    <td>(((status = 0) OR ((status &lt;&gt; 0) AND (error IS NULL))))</td>
-                                </tr>
-                                <tr>
-                                    <td>collated_cumalative_gas_used</td>
-                                    <td>(((block_hash IS NULL) OR (cumulative_gas_used IS NOT NULL)))</td>
-                                </tr>
-                                <tr>
-                                    <td>collated_gas_used</td>
-                                    <td>(((block_hash IS NULL) OR (gas_used IS NOT NULL)))</td>
-                                </tr>
-                                <tr>
-                                    <td>pending_cumalative_gas_used</td>
-                                    <td>(((block_hash IS NOT NULL) OR (cumulative_gas_used IS NULL)))</td>
+                                    <td>status</td>
+                                    <td>((((block_hash IS NULL) AND (status IS NULL)) OR (block_hash IS NOT NULL) OR ((status &#61; 0) AND ((error)::text &#61; &#39;dropped/replaced&#39;::text))))</td>
                                 </tr>
                                 <tr>
                                     <td>collated_index</td>
                                     <td>(((block_hash IS NULL) OR (index IS NOT NULL)))</td>
                                 </tr>
                                 <tr>
+                                    <td>pending_index</td>
+                                    <td>(((block_hash IS NOT NULL) OR (index IS NULL)))</td>
+                                </tr>
+                                <tr>
+                                    <td>pending_cumalative_gas_used</td>
+                                    <td>(((block_hash IS NOT NULL) OR (cumulative_gas_used IS NULL)))</td>
+                                </tr>
+                                <tr>
                                     <td>pending_gas_used</td>
                                     <td>(((block_hash IS NOT NULL) OR (gas_used IS NULL)))</td>
+                                </tr>
+                                <tr>
+                                    <td>collated_gas_price</td>
+                                    <td>(((block_hash IS NULL) OR (gas_price IS NOT NULL)))</td>
+                                </tr>
+                                <tr>
+                                    <td>collated_gas_used</td>
+                                    <td>(((block_hash IS NULL) OR (gas_used IS NOT NULL)))</td>
+                                </tr>
+                                <tr>
+                                    <td>collated_cumalative_gas_used</td>
+                                    <td>(((block_hash IS NULL) OR (cumulative_gas_used IS NOT NULL)))</td>
+                                </tr>
+                                <tr>
+                                    <td>error</td>
+                                    <td>(((status &#61; 0) OR ((status &lt;&gt; 0) AND (error IS NULL))))</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -816,41 +911,25 @@
                                 <ul class="nav nav-tabs pull-left ui-sortable-handle">
                                     <li class="active"><a href="#oneDegreeImg-chart" data-toggle="tab" aria-expanded="true">One</a></li>
                                     <li class=""><a href="#twodegreesDegreeImg-chart" data-toggle="tab" aria-expanded="true">Two degrees</a></li>
+                                    <li class=""><a href="#oneimpliedDegreeImg-chart" data-toggle="tab" aria-expanded="true">One implied</a></li>
+                                    <li class=""><a href="#twoimpliedDegreeImg-chart" data-toggle="tab" aria-expanded="true">Two implied</a></li>
                                 </ul>
                                 <div class="tab-content no-padding">
                                     <div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">
-                                        <map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
-<area shape="rect" id="node1" href="../../tables/blocks.html" target="_top" title="blocks" alt="" coords="388,451,572,773">
-<area shape="rect" id="node2" href="../../tables/addresses.html" target="_top" title="addresses" alt="" coords="5,883,344,1059">
-<area shape="rect" id="node3" href="../../tables/internal_transactions.html" target="_top" title="internal_transactions" alt="" coords="1133,5,1432,357">
-<area shape="rect" id="node4" href="../../tables/transactions.html" target="_top" title="transactions" alt="" coords="616,395,1089,1315">
-<area shape="rect" id="node5" href="../../tables/logs.html" target="_top" title="logs" alt="" coords="1189,375,1376,756">
-<area shape="rect" id="node6" href="../../tables/token_transfers.html" target="_top" title="token_transfers" alt="" coords="1141,1233,1425,1556">
-<area shape="rect" id="node7" href="../../tables/transaction_forks.html" target="_top" title="transaction_forks" alt="" coords="1173,773,1392,949">
-</map>
+                                        
                                         <a name='diagram'><object type="image/svg+xml" id="oneDegreeImg" data="../diagrams/tables/transactions.1degree.svg" class="diagram" border="0" align="left"></object></a>
                                     </div>
                                     <div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">
-                                        <map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" href="../../tables/address_coin_balances.html" target="_top" title="address_coin_balances" alt="" coords="413,5,669,93">
-<area shape="rect" id="node2" href="../../tables/addresses.html" target="_top" title="addresses" alt="" coords="5,505,344,681">
-<area shape="rect" id="node3" href="../../tables/address_coin_balances_daily.html" target="_top" title="address_coin_balances_daily" alt="" coords="391,111,691,199">
-<area shape="rect" id="node4" href="../../tables/address_current_token_balances.html" target="_top" title="address_current_token_balances" alt="" coords="808,180,1140,268">
-<area shape="rect" id="node5" href="../../tables/tokens.html" target="_top" title="tokens" alt="" coords="471,252,610,340">
-<area shape="rect" id="node6" href="../../tables/address_token_balances.html" target="_top" title="address_token_balances" alt="" coords="840,287,1108,375">
-<area shape="rect" id="node7" href="../../tables/block_rewards.html" target="_top" title="block_rewards" alt="" coords="877,537,1071,625">
-<area shape="rect" id="node8" href="../../tables/blocks.html" target="_top" title="blocks" alt="" coords="449,752,633,1075">
-<area shape="rect" id="node9" href="../../tables/block_second_degree_relations.html" target="_top" title="block_second_degree_relations" alt="" coords="815,784,1133,872">
-<area shape="rect" id="node10" href="../../tables/decompiled_smart_contracts.html" target="_top" title="decompiled_smart_contracts" alt="" coords="388,2043,693,2131">
-<area shape="rect" id="node11" href="../../tables/internal_transactions.html" target="_top" title="internal_transactions" alt="" coords="1255,335,1553,687">
-<area shape="rect" id="node12" href="../../tables/transactions.html" target="_top" title="transactions" alt="" coords="737,961,1211,1881">
-<area shape="rect" id="node13" href="../../tables/logs.html" target="_top" title="logs" alt="" coords="1311,704,1497,1085">
-<area shape="rect" id="node14" href="../../tables/pending_block_operations.html" target="_top" title="pending_block_operations" alt="" coords="833,679,1115,767">
-<area shape="rect" id="node15" href="../../tables/smart_contracts.html" target="_top" title="smart_contracts" alt="" coords="436,2148,645,2236">
-<area shape="rect" id="node16" href="../../tables/token_transfers.html" target="_top" title="token_transfers" alt="" coords="1262,1800,1546,2123">
-<area shape="rect" id="node17" href="../../tables/transaction_forks.html" target="_top" title="transaction_forks" alt="" coords="1295,1107,1513,1283">
-</map>
+                                        
                                         <a name='diagram'><object type="image/svg+xml" id="twodegreesDegreeImg" data="../diagrams/tables/transactions.2degrees.svg" class="diagram" border="0" align="left"></object></a>
+                                    </div>
+                                    <div class="chart tab-pane " id="oneimpliedDegreeImg-chart" style="position: relative; overflow-x:auto;">
+                                        
+                                        <a name='diagram'><object type="image/svg+xml" id="oneimpliedDegreeImg" data="../diagrams/tables/transactions.implied1degrees.svg" class="diagram" border="0" align="left"></object></a>
+                                    </div>
+                                    <div class="chart tab-pane " id="twoimpliedDegreeImg-chart" style="position: relative; overflow-x:auto;">
+                                        
+                                        <a name='diagram'><object type="image/svg+xml" id="twoimpliedDegreeImg" data="../diagrams/tables/transactions.implied2degrees.svg" class="diagram" border="0" align="left"></object></a>
                                     </div>
                                 </div>
                             </div>
@@ -870,7 +949,7 @@
                         <a href="https://github.com/schemaspy/schemaspy" title="GitHub for SchemaSpy"><i class="fa fa-github-square fa-2x"></i></a>
                         <a href="http://stackoverflow.com/questions/tagged/schemaspy" title="StackOverflow for SchemaSpy"><i class="fa fa-stack-overflow fa-2x"></i></a>
                     </div>
-                    <strong>Generated by <a href="http://schemaspy.org/" class="logo-text"><i class="fa fa-database"></i> SchemaSpy 6.1.0</a></strong>
+                    <strong>Generated by <a href="http://schemaspy.org/" class="logo-text"><i class="fa fa-database"></i> SchemaSpy 6.2.4</a></strong>
                 </div>
                 <!-- /.container -->
             </footer>

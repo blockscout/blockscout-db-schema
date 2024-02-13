@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>token_transfers - blockscout Database</title>
+        <title>token_transfers - blockscout.public</title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <link rel="icon" type="image/png" sizes="16x16" href="../favicon.png">
@@ -46,7 +46,7 @@
                 <nav class="navbar navbar-static-top">
                     <div class="container">
                         <div class="navbar-header">
-                            <a href="../index.html" class="navbar-brand"><b>blockscout</b> Database</a>
+                            <a href="../index.html" class="navbar-brand"><b>blockscout</b></a><span class="navbar-brand" style="padding-left: 0">.public</span>
                             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse"><i class="fa fa-bars"></i></button>
                         </div>
 
@@ -73,7 +73,7 @@
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
-                    <h1>token_transfers</h1><p><span id="recordNumber">0</span> rows</p><br />
+                    <h1>token_transfers</h1><p><span id="recordNumber">-1</span> rows</p><br />
                 </section>
                 <!-- Main content -->
                 <section class="content">
@@ -87,7 +87,13 @@
                             </div>
                         </div>
                         <div class="box-body">
-                            <table id="standard_table" class="table table-bordered table-striped dataTable" role="grid">
+                            <table
+                                    id="standard_table"
+                                    class="table table-bordered table-striped dataTable"
+                                    role="grid"
+                                    data-paging="true"
+                                    data-page-length="10"
+                                    data-length-change="false">
                                 <thead align='left'>
                                 <tr>
                                     <th>Column</th>
@@ -117,7 +123,8 @@
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                             <tr>
                                                 <td title="token_transfers.transaction_hash references transactions.hash via token_transfers_transaction_hash_fkey"><a href='transactions.html'>transactions</a><span class='relatedKey'>.hash</span></td>
-                                                <td class="constraint detail">token_transfers_transaction_hash_fkey<span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
+                                                <td class="constraint detail">token_transfers_transaction_hash_fkey</td>
+                                                <td class="constraint detail"><span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
                                             </tr>
                                         </table>
                                     </td>
@@ -141,7 +148,7 @@
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="from_address_hash">from_address_hash</span></td>
+                                    <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i><span id="from_address_hash">from_address_hash</span></td>
                                     <td>bytea</td>
                                     <td>2147483647</td>
                                     <td title=''></td>
@@ -153,16 +160,12 @@
                                     </td>
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
-                                            <tr>
-                                                <td title="token_transfers.from_address_hash references addresses.hash via token_transfers_from_address_hash_fkey"><a href='addresses.html'>addresses</a><span class='relatedKey'>.hash</span></td>
-                                                <td class="constraint detail">token_transfers_from_address_hash_fkey<span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
-                                            </tr>
                                         </table>
                                     </td>
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="to_address_hash">to_address_hash</span></td>
+                                    <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i><span id="to_address_hash">to_address_hash</span></td>
                                     <td>bytea</td>
                                     <td>2147483647</td>
                                     <td title=''></td>
@@ -174,10 +177,6 @@
                                     </td>
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
-                                            <tr>
-                                                <td title="token_transfers.to_address_hash references addresses.hash via token_transfers_to_address_hash_fkey"><a href='addresses.html'>addresses</a><span class='relatedKey'>.hash</span></td>
-                                                <td class="constraint detail">token_transfers_to_address_hash_fkey<span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
-                                            </tr>
                                         </table>
                                     </td>
                                     <td></td>
@@ -185,7 +184,7 @@
                                 <tr>
                                     <td><span id="amount">amount</span></td>
                                     <td>numeric</td>
-                                    <td>131089</td>
+                                    <td>0</td>
                                     <td title='nullable'>√</td>
                                     <td title=''></td>
                                     <td>null</td>
@@ -200,24 +199,7 @@
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i><span id="token_id">token_id</span></td>
-                                    <td>numeric</td>
-                                    <td>78</td>
-                                    <td title='nullable'>√</td>
-                                    <td title=''></td>
-                                    <td>null</td>
-                                    <td>
-                                        <table border='0' cellspacing='0' cellpadding='0'>
-                                        </table>
-                                    </td>
-                                    <td>
-                                        <table border='0' cellspacing='0' cellpadding='0'>
-                                        </table>
-                                    </td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="token_contract_address_hash">token_contract_address_hash</span></td>
+                                    <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i><span id="token_contract_address_hash">token_contract_address_hash</span></td>
                                     <td>bytea</td>
                                     <td>2147483647</td>
                                     <td title=''></td>
@@ -229,10 +211,6 @@
                                     </td>
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
-                                            <tr>
-                                                <td title="token_transfers.token_contract_address_hash references addresses.hash via token_transfers_token_contract_address_hash_fkey"><a href='addresses.html'>addresses</a><span class='relatedKey'>.hash</span></td>
-                                                <td class="constraint detail">token_transfers_token_contract_address_hash_fkey<span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
-                                            </tr>
                                         </table>
                                     </td>
                                     <td></td>
@@ -303,7 +281,8 @@
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                             <tr>
                                                 <td title="token_transfers.block_hash references blocks.hash via token_transfers_block_hash_fkey"><a href='blocks.html'>blocks</a><span class='relatedKey'>.hash</span></td>
-                                                <td class="constraint detail">token_transfers_block_hash_fkey<span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                                <td class="constraint detail">token_transfers_block_hash_fkey</td>
+                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
                                             </tr>
                                         </table>
                                     </td>
@@ -327,7 +306,7 @@
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td><span id="token_ids">token_ids</span></td>
+                                    <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i><span id="token_ids">token_ids</span></td>
                                     <td>_numeric</td>
                                     <td>78</td>
                                     <td title='nullable'>√</td>
@@ -357,7 +336,13 @@
                             </div>
                         </div>
                         <div class="box-body">
-                            <table id="indexes_table" class="table table-bordered table-striped dataTable" role="grid">
+                            <table
+                                    id="indexes_table"
+                                    class="table table-bordered table-striped dataTable"
+                                    role="grid"
+                                    data-paging="true"
+                                    data-page-length="10"
+                                    data-length-change="false">
                                 <thead>
                                 <tr>
                                     <th>Constraint Name</th>
@@ -372,6 +357,12 @@
                                     <td>Primary key</td>
                                     <td><span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span></td>
                                     <td>transaction_hash + block_hash + log_index</td>
+                                </tr>
+                                <tr>
+                                    <td title='Indexed'>token_transfers_block_number_ASC_log_index_ASC_index</td>
+                                    <td>Performance</td>
+                                    <td><span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span></td>
+                                    <td>block_number + log_index</td>
                                 </tr>
                                 <tr>
                                     <td title='Indexed'>token_transfers_block_number_DESC_log_index_DESC_index</td>
@@ -404,22 +395,16 @@
                                     <td>token_contract_address_hash + block_number</td>
                                 </tr>
                                 <tr>
-                                    <td title='Indexed'>token_transfers_token_contract_address_hash_token_id_DESC_block</td>
+                                    <td title='Indexed'>token_transfers_token_contract_address_hash_token_ids_index</td>
                                     <td>Performance</td>
-                                    <td><span title='Ascending'>Asc</span>/<span title='Descending'>Desc</span>/<span title='Descending'>Desc</span></td>
-                                    <td>token_contract_address_hash + token_id + block_number</td>
+                                    <td><span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span></td>
+                                    <td>token_contract_address_hash + token_ids</td>
                                 </tr>
                                 <tr>
                                     <td title='Indexed'>token_transfers_token_contract_address_hash_transaction_hash_in</td>
                                     <td>Performance</td>
                                     <td><span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span></td>
                                     <td>token_contract_address_hash + transaction_hash</td>
-                                </tr>
-                                <tr>
-                                    <td title='Indexed'>token_transfers_token_id_index</td>
-                                    <td>Performance</td>
-                                    <td><span title='Ascending'>Asc</span></td>
-                                    <td>token_id</td>
                                 </tr>
                                 <tr>
                                     <td title='Indexed'>token_transfers_transaction_hash_log_index_index</td>
@@ -446,38 +431,25 @@
                                 <ul class="nav nav-tabs pull-left ui-sortable-handle">
                                     <li class="active"><a href="#oneDegreeImg-chart" data-toggle="tab" aria-expanded="true">One</a></li>
                                     <li class=""><a href="#twodegreesDegreeImg-chart" data-toggle="tab" aria-expanded="true">Two degrees</a></li>
+                                    <li class=""><a href="#oneimpliedDegreeImg-chart" data-toggle="tab" aria-expanded="true">One implied</a></li>
+                                    <li class=""><a href="#twoimpliedDegreeImg-chart" data-toggle="tab" aria-expanded="true">Two implied</a></li>
                                 </ul>
                                 <div class="tab-content no-padding">
                                     <div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">
-                                        <map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
-<area shape="rect" id="node1" href="../../tables/blocks.html" target="_top" title="blocks" alt="" coords="388,78,572,401">
-<area shape="rect" id="node2" href="../../tables/addresses.html" target="_top" title="addresses" alt="" coords="5,421,344,597">
-<area shape="rect" id="node3" href="../../tables/token_transfers.html" target="_top" title="token_transfers" alt="" coords="981,417,1417,867">
-<area shape="rect" id="node4" href="../../tables/transactions.html" target="_top" title="transactions" alt="" coords="616,77,937,546">
-</map>
+                                        
                                         <a name='diagram'><object type="image/svg+xml" id="oneDegreeImg" data="../diagrams/tables/token_transfers.1degree.svg" class="diagram" border="0" align="left"></object></a>
                                     </div>
                                     <div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">
-                                        <map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" href="../../tables/address_coin_balances.html" target="_top" title="address_coin_balances" alt="" coords="413,5,669,93">
-<area shape="rect" id="node2" href="../../tables/addresses.html" target="_top" title="addresses" alt="" coords="5,465,344,641">
-<area shape="rect" id="node3" href="../../tables/address_coin_balances_daily.html" target="_top" title="address_coin_balances_daily" alt="" coords="391,111,691,199">
-<area shape="rect" id="node4" href="../../tables/address_current_token_balances.html" target="_top" title="address_current_token_balances" alt="" coords="737,180,1069,268">
-<area shape="rect" id="node5" href="../../tables/tokens.html" target="_top" title="tokens" alt="" coords="471,252,610,340">
-<area shape="rect" id="node6" href="../../tables/address_token_balances.html" target="_top" title="address_token_balances" alt="" coords="769,287,1037,375">
-<area shape="rect" id="node7" href="../../tables/block_rewards.html" target="_top" title="block_rewards" alt="" coords="806,497,1001,585">
-<area shape="rect" id="node8" href="../../tables/blocks.html" target="_top" title="blocks" alt="" coords="449,675,633,997">
-<area shape="rect" id="node9" href="../../tables/block_second_degree_relations.html" target="_top" title="block_second_degree_relations" alt="" coords="744,639,1063,727">
-<area shape="rect" id="node10" href="../../tables/decompiled_smart_contracts.html" target="_top" title="decompiled_smart_contracts" alt="" coords="388,1552,693,1640">
-<area shape="rect" id="node11" href="../../tables/internal_transactions.html" target="_top" title="internal_transactions" alt="" coords="1207,372,1456,460">
-<area shape="rect" id="node12" href="../../tables/transactions.html" target="_top" title="transactions" alt="" coords="743,921,1064,1391">
-<area shape="rect" id="node13" href="../../tables/logs.html" target="_top" title="logs" alt="" coords="1269,707,1394,795">
-<area shape="rect" id="node14" href="../../tables/pending_block_operations.html" target="_top" title="pending_block_operations" alt="" coords="762,780,1045,868">
-<area shape="rect" id="node15" href="../../tables/smart_contracts.html" target="_top" title="smart_contracts" alt="" coords="436,1657,645,1745">
-<area shape="rect" id="node16" href="../../tables/token_transfers.html" target="_top" title="token_transfers" alt="" coords="1113,1297,1549,1748">
-<area shape="rect" id="node17" href="../../tables/transaction_forks.html" target="_top" title="transaction_forks" alt="" coords="1222,901,1441,989">
-</map>
+                                        
                                         <a name='diagram'><object type="image/svg+xml" id="twodegreesDegreeImg" data="../diagrams/tables/token_transfers.2degrees.svg" class="diagram" border="0" align="left"></object></a>
+                                    </div>
+                                    <div class="chart tab-pane " id="oneimpliedDegreeImg-chart" style="position: relative; overflow-x:auto;">
+                                        
+                                        <a name='diagram'><object type="image/svg+xml" id="oneimpliedDegreeImg" data="../diagrams/tables/token_transfers.implied1degrees.svg" class="diagram" border="0" align="left"></object></a>
+                                    </div>
+                                    <div class="chart tab-pane " id="twoimpliedDegreeImg-chart" style="position: relative; overflow-x:auto;">
+                                        
+                                        <a name='diagram'><object type="image/svg+xml" id="twoimpliedDegreeImg" data="../diagrams/tables/token_transfers.implied2degrees.svg" class="diagram" border="0" align="left"></object></a>
                                     </div>
                                 </div>
                             </div>
@@ -497,7 +469,7 @@
                         <a href="https://github.com/schemaspy/schemaspy" title="GitHub for SchemaSpy"><i class="fa fa-github-square fa-2x"></i></a>
                         <a href="http://stackoverflow.com/questions/tagged/schemaspy" title="StackOverflow for SchemaSpy"><i class="fa fa-stack-overflow fa-2x"></i></a>
                     </div>
-                    <strong>Generated by <a href="http://schemaspy.org/" class="logo-text"><i class="fa fa-database"></i> SchemaSpy 6.1.0</a></strong>
+                    <strong>Generated by <a href="http://schemaspy.org/" class="logo-text"><i class="fa fa-database"></i> SchemaSpy 6.2.4</a></strong>
                 </div>
                 <!-- /.container -->
             </footer>

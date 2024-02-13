@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>logs - blockscout Database</title>
+        <title>logs - blockscout.public</title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <link rel="icon" type="image/png" sizes="16x16" href="../favicon.png">
@@ -46,7 +46,7 @@
                 <nav class="navbar navbar-static-top">
                     <div class="container">
                         <div class="navbar-header">
-                            <a href="../index.html" class="navbar-brand"><b>blockscout</b> Database</a>
+                            <a href="../index.html" class="navbar-brand"><b>blockscout</b></a><span class="navbar-brand" style="padding-left: 0">.public</span>
                             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse"><i class="fa fa-bars"></i></button>
                         </div>
 
@@ -73,7 +73,7 @@
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
-                    <h1>logs</h1><p><span id="recordNumber">0</span> rows</p><br />
+                    <h1>logs</h1><p><span id="recordNumber">-1</span> rows</p><br />
                 </section>
                 <!-- Main content -->
                 <section class="content">
@@ -87,7 +87,13 @@
                             </div>
                         </div>
                         <div class="box-body">
-                            <table id="standard_table" class="table table-bordered table-striped dataTable" role="grid">
+                            <table
+                                    id="standard_table"
+                                    class="table table-bordered table-striped dataTable"
+                                    role="grid"
+                                    data-paging="true"
+                                    data-page-length="10"
+                                    data-length-change="false">
                                 <thead align='left'>
                                 <tr>
                                     <th>Column</th>
@@ -137,26 +143,9 @@
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i><span id="type">type</span></td>
-                                    <td>varchar</td>
-                                    <td>255</td>
-                                    <td title='nullable'>√</td>
-                                    <td title=''></td>
-                                    <td>null</td>
-                                    <td>
-                                        <table border='0' cellspacing='0' cellpadding='0'>
-                                        </table>
-                                    </td>
-                                    <td>
-                                        <table border='0' cellspacing='0' cellpadding='0'>
-                                        </table>
-                                    </td>
-                                    <td></td>
-                                </tr>
-                                <tr>
                                     <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i><span id="first_topic">first_topic</span></td>
-                                    <td>varchar</td>
-                                    <td>255</td>
+                                    <td>bytea</td>
+                                    <td>2147483647</td>
                                     <td title='nullable'>√</td>
                                     <td title=''></td>
                                     <td>null</td>
@@ -172,8 +161,8 @@
                                 </tr>
                                 <tr>
                                     <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i><span id="second_topic">second_topic</span></td>
-                                    <td>varchar</td>
-                                    <td>255</td>
+                                    <td>bytea</td>
+                                    <td>2147483647</td>
                                     <td title='nullable'>√</td>
                                     <td title=''></td>
                                     <td>null</td>
@@ -189,8 +178,8 @@
                                 </tr>
                                 <tr>
                                     <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i><span id="third_topic">third_topic</span></td>
-                                    <td>varchar</td>
-                                    <td>255</td>
+                                    <td>bytea</td>
+                                    <td>2147483647</td>
                                     <td title='nullable'>√</td>
                                     <td title=''></td>
                                     <td>null</td>
@@ -206,8 +195,8 @@
                                 </tr>
                                 <tr>
                                     <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i><span id="fourth_topic">fourth_topic</span></td>
-                                    <td>varchar</td>
-                                    <td>255</td>
+                                    <td>bytea</td>
+                                    <td>2147483647</td>
                                     <td title='nullable'>√</td>
                                     <td title=''></td>
                                     <td>null</td>
@@ -256,7 +245,7 @@
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td class='foreignKey' title='Foreign Key'><i class='icon ion-key iconkey' style='padding-left: 5px;'></i><span id="address_hash">address_hash</span></td>
+                                    <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i><span id="address_hash">address_hash</span></td>
                                     <td>bytea</td>
                                     <td>2147483647</td>
                                     <td title='nullable'>√</td>
@@ -268,10 +257,6 @@
                                     </td>
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
-                                            <tr>
-                                                <td title="logs.address_hash references addresses.hash via logs_address_hash_fkey"><a href='addresses.html'>addresses</a><span class='relatedKey'>.hash</span></td>
-                                                <td class="constraint detail">logs_address_hash_fkey<span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
-                                            </tr>
                                         </table>
                                     </td>
                                     <td></td>
@@ -291,7 +276,8 @@
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                             <tr>
                                                 <td title="logs.transaction_hash references transactions.hash via logs_transaction_hash_fkey"><a href='transactions.html'>transactions</a><span class='relatedKey'>.hash</span></td>
-                                                <td class="constraint detail">logs_transaction_hash_fkey<span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
+                                                <td class="constraint detail">logs_transaction_hash_fkey</td>
+                                                <td class="constraint detail"><span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
                                             </tr>
                                         </table>
                                     </td>
@@ -312,7 +298,8 @@
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                             <tr>
                                                 <td title="logs.block_hash references blocks.hash via logs_block_hash_fkey"><a href='blocks.html'>blocks</a><span class='relatedKey'>.hash</span></td>
-                                                <td class="constraint detail">logs_block_hash_fkey<span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
+                                                <td class="constraint detail">logs_block_hash_fkey</td>
+                                                <td class="constraint detail"><span title='Restrict delete:&#10;Parent cannot be deleted if children exist'>R</span></td>
                                             </tr>
                                         </table>
                                     </td>
@@ -349,7 +336,13 @@
                             </div>
                         </div>
                         <div class="box-body">
-                            <table id="indexes_table" class="table table-bordered table-striped dataTable" role="grid">
+                            <table
+                                    id="indexes_table"
+                                    class="table table-bordered table-striped dataTable"
+                                    role="grid"
+                                    data-paging="true"
+                                    data-page-length="10"
+                                    data-length-change="false">
                                 <thead>
                                 <tr>
                                     <th>Constraint Name</th>
@@ -376,6 +369,12 @@
                                     <td>Performance</td>
                                     <td><span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span></td>
                                     <td>address_hash + transaction_hash</td>
+                                </tr>
+                                <tr>
+                                    <td title='Indexed'>logs_block_number_ASC__index_ASC_index</td>
+                                    <td>Performance</td>
+                                    <td><span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span></td>
+                                    <td>block_number + index</td>
                                 </tr>
                                 <tr>
                                     <td title='Indexed'>logs_block_number_DESC__index_DESC_index</td>
@@ -419,12 +418,6 @@
                                     <td><span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span></td>
                                     <td>transaction_hash + index</td>
                                 </tr>
-                                <tr>
-                                    <td title='Indexed'>logs_type_index</td>
-                                    <td>Performance</td>
-                                    <td><span title='Ascending'>Asc</span></td>
-                                    <td>type</td>
-                                </tr>
                                 </tbody>
                             </table>
                         </div><!-- /.box-body -->
@@ -444,38 +437,25 @@
                                 <ul class="nav nav-tabs pull-left ui-sortable-handle">
                                     <li class="active"><a href="#oneDegreeImg-chart" data-toggle="tab" aria-expanded="true">One</a></li>
                                     <li class=""><a href="#twodegreesDegreeImg-chart" data-toggle="tab" aria-expanded="true">Two degrees</a></li>
+                                    <li class=""><a href="#oneimpliedDegreeImg-chart" data-toggle="tab" aria-expanded="true">One implied</a></li>
+                                    <li class=""><a href="#twoimpliedDegreeImg-chart" data-toggle="tab" aria-expanded="true">Two implied</a></li>
                                 </ul>
                                 <div class="tab-content no-padding">
                                     <div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">
-                                        <map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
-<area shape="rect" id="node1" href="../../tables/blocks.html" target="_top" title="blocks" alt="" coords="388,348,572,671">
-<area shape="rect" id="node2" href="../../tables/addresses.html" target="_top" title="addresses" alt="" coords="5,619,344,795">
-<area shape="rect" id="node3" href="../../tables/logs.html" target="_top" title="logs" alt="" coords="981,5,1320,456">
-<area shape="rect" id="node4" href="../../tables/transactions.html" target="_top" title="transactions" alt="" coords="616,391,937,860">
-</map>
+                                        
                                         <a name='diagram'><object type="image/svg+xml" id="oneDegreeImg" data="../diagrams/tables/logs.1degree.svg" class="diagram" border="0" align="left"></object></a>
                                     </div>
                                     <div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">
-                                        <map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" href="../../tables/address_coin_balances.html" target="_top" title="address_coin_balances" alt="" coords="413,5,669,93">
-<area shape="rect" id="node2" href="../../tables/addresses.html" target="_top" title="addresses" alt="" coords="5,465,344,641">
-<area shape="rect" id="node3" href="../../tables/address_coin_balances_daily.html" target="_top" title="address_coin_balances_daily" alt="" coords="391,111,691,199">
-<area shape="rect" id="node4" href="../../tables/address_current_token_balances.html" target="_top" title="address_current_token_balances" alt="" coords="737,180,1069,268">
-<area shape="rect" id="node5" href="../../tables/tokens.html" target="_top" title="tokens" alt="" coords="471,252,610,340">
-<area shape="rect" id="node6" href="../../tables/address_token_balances.html" target="_top" title="address_token_balances" alt="" coords="769,287,1037,375">
-<area shape="rect" id="node7" href="../../tables/block_rewards.html" target="_top" title="block_rewards" alt="" coords="806,497,1001,585">
-<area shape="rect" id="node8" href="../../tables/blocks.html" target="_top" title="blocks" alt="" coords="449,643,633,965">
-<area shape="rect" id="node9" href="../../tables/block_second_degree_relations.html" target="_top" title="block_second_degree_relations" alt="" coords="744,780,1063,868">
-<area shape="rect" id="node10" href="../../tables/decompiled_smart_contracts.html" target="_top" title="decompiled_smart_contracts" alt="" coords="388,1512,693,1600">
-<area shape="rect" id="node11" href="../../tables/internal_transactions.html" target="_top" title="internal_transactions" alt="" coords="1158,372,1407,460">
-<area shape="rect" id="node12" href="../../tables/transactions.html" target="_top" title="transactions" alt="" coords="743,921,1064,1391">
-<area shape="rect" id="node13" href="../../tables/logs.html" target="_top" title="logs" alt="" coords="1113,477,1452,928">
-<area shape="rect" id="node14" href="../../tables/pending_block_operations.html" target="_top" title="pending_block_operations" alt="" coords="762,675,1045,763">
-<area shape="rect" id="node15" href="../../tables/smart_contracts.html" target="_top" title="smart_contracts" alt="" coords="436,1617,645,1705">
-<area shape="rect" id="node16" href="../../tables/token_transfers.html" target="_top" title="token_transfers" alt="" coords="1180,1423,1385,1511">
-<area shape="rect" id="node17" href="../../tables/transaction_forks.html" target="_top" title="transaction_forks" alt="" coords="1173,949,1392,1037">
-</map>
+                                        
                                         <a name='diagram'><object type="image/svg+xml" id="twodegreesDegreeImg" data="../diagrams/tables/logs.2degrees.svg" class="diagram" border="0" align="left"></object></a>
+                                    </div>
+                                    <div class="chart tab-pane " id="oneimpliedDegreeImg-chart" style="position: relative; overflow-x:auto;">
+                                        
+                                        <a name='diagram'><object type="image/svg+xml" id="oneimpliedDegreeImg" data="../diagrams/tables/logs.implied1degrees.svg" class="diagram" border="0" align="left"></object></a>
+                                    </div>
+                                    <div class="chart tab-pane " id="twoimpliedDegreeImg-chart" style="position: relative; overflow-x:auto;">
+                                        
+                                        <a name='diagram'><object type="image/svg+xml" id="twoimpliedDegreeImg" data="../diagrams/tables/logs.implied2degrees.svg" class="diagram" border="0" align="left"></object></a>
                                     </div>
                                 </div>
                             </div>
@@ -495,7 +475,7 @@
                         <a href="https://github.com/schemaspy/schemaspy" title="GitHub for SchemaSpy"><i class="fa fa-github-square fa-2x"></i></a>
                         <a href="http://stackoverflow.com/questions/tagged/schemaspy" title="StackOverflow for SchemaSpy"><i class="fa fa-stack-overflow fa-2x"></i></a>
                     </div>
-                    <strong>Generated by <a href="http://schemaspy.org/" class="logo-text"><i class="fa fa-database"></i> SchemaSpy 6.1.0</a></strong>
+                    <strong>Generated by <a href="http://schemaspy.org/" class="logo-text"><i class="fa fa-database"></i> SchemaSpy 6.2.4</a></strong>
                 </div>
                 <!-- /.container -->
             </footer>

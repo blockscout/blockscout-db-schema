@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>pending_block_operations - blockscout Database</title>
+        <title>pending_block_operations - blockscout.public</title>
         <!-- Tell the browser to be responsive to screen width -->
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <link rel="icon" type="image/png" sizes="16x16" href="../favicon.png">
@@ -46,7 +46,7 @@
                 <nav class="navbar navbar-static-top">
                     <div class="container">
                         <div class="navbar-header">
-                            <a href="../index.html" class="navbar-brand"><b>blockscout</b> Database</a>
+                            <a href="../index.html" class="navbar-brand"><b>blockscout</b></a><span class="navbar-brand" style="padding-left: 0">.public</span>
                             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse"><i class="fa fa-bars"></i></button>
                         </div>
 
@@ -73,7 +73,7 @@
             <div class="content-wrapper">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
-                    <h1>pending_block_operations</h1><p><span id="recordNumber">1</span> rows</p><br />
+                    <h1>pending_block_operations</h1><p><span id="recordNumber">-1</span> rows</p><br />
                 </section>
                 <!-- Main content -->
                 <section class="content">
@@ -87,7 +87,13 @@
                             </div>
                         </div>
                         <div class="box-body">
-                            <table id="standard_table" class="table table-bordered table-striped dataTable" role="grid">
+                            <table
+                                    id="standard_table"
+                                    class="table table-bordered table-striped dataTable"
+                                    role="grid"
+                                    data-paging="true"
+                                    data-page-length="10"
+                                    data-length-change="false">
                                 <thead align='left'>
                                 <tr>
                                     <th>Column</th>
@@ -117,7 +123,8 @@
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                             <tr>
                                                 <td title="pending_block_operations.block_hash references blocks.hash via pending_block_operations_block_hash_fkey"><a href='blocks.html'>blocks</a><span class='relatedKey'>.hash</span></td>
-                                                <td class="constraint detail">pending_block_operations_block_hash_fkey<span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
+                                                <td class="constraint detail">pending_block_operations_block_hash_fkey</td>
+                                                <td class="constraint detail"><span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
                                             </tr>
                                         </table>
                                     </td>
@@ -158,10 +165,10 @@
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td><span id="fetch_internal_transactions">fetch_internal_transactions</span></td>
-                                    <td>bool</td>
-                                    <td>1</td>
-                                    <td title=''></td>
+                                    <td><span id="block_number">block_number</span></td>
+                                    <td>int4</td>
+                                    <td>10</td>
+                                    <td title='nullable'>√</td>
                                     <td title=''></td>
                                     <td>null</td>
                                     <td>
@@ -188,7 +195,13 @@
                             </div>
                         </div>
                         <div class="box-body">
-                            <table id="indexes_table" class="table table-bordered table-striped dataTable" role="grid">
+                            <table
+                                    id="indexes_table"
+                                    class="table table-bordered table-striped dataTable"
+                                    role="grid"
+                                    data-paging="true"
+                                    data-page-length="10"
+                                    data-length-change="false">
                                 <thead>
                                 <tr>
                                     <th>Constraint Name</th>
@@ -201,12 +214,6 @@
                                 <tr>
                                     <td class='primaryKey' title='Primary Key'><i class='icon ion-key iconkey'></i> pending_block_operations_pkey</td>
                                     <td>Primary key</td>
-                                    <td><span title='Ascending'>Asc</span></td>
-                                    <td>block_hash</td>
-                                </tr>
-                                <tr>
-                                    <td title='Indexed'>pending_block_operations_block_hash_index_partial</td>
-                                    <td>Performance</td>
                                     <td><span title='Ascending'>Asc</span></td>
                                     <td>block_hash</td>
                                 </tr>
@@ -232,25 +239,11 @@
                                 </ul>
                                 <div class="tab-content no-padding">
                                     <div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">
-                                        <map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
-<area shape="rect" id="node1" href="../../tables/pending_block_operations.html" target="_top" title="pending_block_operations" alt="" coords="233,32,653,219">
-<area shape="rect" id="node2" href="../../tables/blocks.html" target="_top" title="blocks" alt="" coords="5,5,189,328">
-</map>
+                                        
                                         <a name='diagram'><object type="image/svg+xml" id="oneDegreeImg" data="../diagrams/tables/pending_block_operations.1degree.svg" class="diagram" border="0" align="left"></object></a>
                                     </div>
                                     <div class="chart tab-pane " id="twodegreesDegreeImg-chart" style="position: relative; overflow-x:auto;">
-                                        <map id="twoDegreesRelationshipsDiagram" name="twoDegreesRelationshipsDiagram">
-<area shape="rect" id="node1" href="../../tables/block_rewards.html" target="_top" title="block_rewards" alt="" coords="551,131,746,219">
-<area shape="rect" id="node2" href="../../tables/addresses.html" target="_top" title="addresses" alt="" coords="5,525,167,613">
-<area shape="rect" id="node3" href="../../tables/blocks.html" target="_top" title="blocks" alt="" coords="211,335,395,657">
-<area shape="rect" id="node4" href="../../tables/block_second_degree_relations.html" target="_top" title="block_second_degree_relations" alt="" coords="489,272,808,360">
-<area shape="rect" id="node5" href="../../tables/internal_transactions.html" target="_top" title="internal_transactions" alt="" coords="903,5,1152,93">
-<area shape="rect" id="node6" href="../../tables/transactions.html" target="_top" title="transactions" alt="" coords="558,653,739,741">
-<area shape="rect" id="node7" href="../../tables/logs.html" target="_top" title="logs" alt="" coords="965,544,1090,632">
-<area shape="rect" id="node8" href="../../tables/pending_block_operations.html" target="_top" title="pending_block_operations" alt="" coords="439,377,859,564">
-<area shape="rect" id="node9" href="../../tables/token_transfers.html" target="_top" title="token_transfers" alt="" coords="925,773,1130,861">
-<area shape="rect" id="node10" href="../../tables/transaction_forks.html" target="_top" title="transaction_forks" alt="" coords="918,652,1137,740">
-</map>
+                                        
                                         <a name='diagram'><object type="image/svg+xml" id="twodegreesDegreeImg" data="../diagrams/tables/pending_block_operations.2degrees.svg" class="diagram" border="0" align="left"></object></a>
                                     </div>
                                 </div>
@@ -271,7 +264,7 @@
                         <a href="https://github.com/schemaspy/schemaspy" title="GitHub for SchemaSpy"><i class="fa fa-github-square fa-2x"></i></a>
                         <a href="http://stackoverflow.com/questions/tagged/schemaspy" title="StackOverflow for SchemaSpy"><i class="fa fa-stack-overflow fa-2x"></i></a>
                     </div>
-                    <strong>Generated by <a href="http://schemaspy.org/" class="logo-text"><i class="fa fa-database"></i> SchemaSpy 6.1.0</a></strong>
+                    <strong>Generated by <a href="http://schemaspy.org/" class="logo-text"><i class="fa fa-database"></i> SchemaSpy 6.2.4</a></strong>
                 </div>
                 <!-- /.container -->
             </footer>
