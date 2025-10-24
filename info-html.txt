@@ -1,5 +1,5 @@
-date=2024-02-13 19:48:20+0300
-os=Mac OS X 14.3.1
-schemaspy-version=6.2.4
-schemaspy-build=6.2.4.41 2023-07-21 11:15:12
-renderer=Graphviz dot 9.0.0 
+date=2025-10-24 15:45:32+0000
+os=Linux 6.10.14-linuxkit
+schemaspy-version=7.0.2
+schemaspy-revision=v7.0.2
+renderer=Graphviz dot 2.43.0 

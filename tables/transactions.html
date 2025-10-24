@@ -213,6 +213,16 @@
                                                 <td class="constraint detail"><span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
                                             </tr>
                                             <tr>
+                                                <td title="pending_transaction_operations.transaction_hash references transactions.hash via pending_transaction_operations_transaction_hash_fkey"><a href='pending_transaction_operations.html'>pending_transaction_operations</a><span class='relatedKey'>.transaction_hash</span></td>
+                                                <td class="constraint detail">pending_transaction_operations_transaction_hash_fkey</td>
+                                                <td class="constraint detail"><span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td title="signed_authorizations.transaction_hash references transactions.hash via signed_authorizations_transaction_hash_fkey"><a href='signed_authorizations.html'>signed_authorizations</a><span class='relatedKey'>.transaction_hash</span></td>
+                                                <td class="constraint detail">signed_authorizations_transaction_hash_fkey</td>
+                                                <td class="constraint detail"><span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
+                                            </tr>
+                                            <tr>
                                                 <td title="token_transfers.transaction_hash references transactions.hash via token_transfers_transaction_hash_fkey"><a href='token_transfers.html'>token_transfers</a><span class='relatedKey'>.transaction_hash</span></td>
                                                 <td class="constraint detail">token_transfers_transaction_hash_fkey</td>
                                                 <td class="constraint detail"><span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
@@ -620,7 +630,7 @@
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td><span id="has_error_in_internal_txs">has_error_in_internal_txs</span></td>
+                                    <td><span id="has_error_in_internal_transactions">has_error_in_internal_transactions</span></td>
                                     <td>bool</td>
                                     <td>1</td>
                                     <td title='nullable'>√</td>
@@ -849,48 +859,48 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>pending_block_number</td>
-                                    <td>(((block_hash IS NOT NULL) OR (block_number IS NULL)))</td>
-                                </tr>
-                                <tr>
-                                    <td>collated_block_number</td>
-                                    <td>(((block_hash IS NULL) OR (block_number IS NOT NULL)))</td>
-                                </tr>
-                                <tr>
-                                    <td>status</td>
-                                    <td>((((block_hash IS NULL) AND (status IS NULL)) OR (block_hash IS NOT NULL) OR ((status &#61; 0) AND ((error)::text &#61; &#39;dropped/replaced&#39;::text))))</td>
+                                    <td>error</td>
+                                    <td>((status &#61; 0) OR ((status &lt;&gt; 0) AND (error IS NULL)))</td>
                                 </tr>
                                 <tr>
                                     <td>collated_index</td>
-                                    <td>(((block_hash IS NULL) OR (index IS NOT NULL)))</td>
-                                </tr>
-                                <tr>
-                                    <td>pending_index</td>
-                                    <td>(((block_hash IS NOT NULL) OR (index IS NULL)))</td>
-                                </tr>
-                                <tr>
-                                    <td>pending_cumalative_gas_used</td>
-                                    <td>(((block_hash IS NOT NULL) OR (cumulative_gas_used IS NULL)))</td>
+                                    <td>((block_hash IS NULL) OR (index IS NOT NULL))</td>
                                 </tr>
                                 <tr>
                                     <td>pending_gas_used</td>
-                                    <td>(((block_hash IS NOT NULL) OR (gas_used IS NULL)))</td>
+                                    <td>((block_hash IS NOT NULL) OR (gas_used IS NULL))</td>
                                 </tr>
                                 <tr>
                                     <td>collated_gas_price</td>
-                                    <td>(((block_hash IS NULL) OR (gas_price IS NOT NULL)))</td>
+                                    <td>((block_hash IS NULL) OR (gas_price IS NOT NULL))</td>
+                                </tr>
+                                <tr>
+                                    <td>collated_block_number</td>
+                                    <td>((block_hash IS NULL) OR (block_number IS NOT NULL))</td>
                                 </tr>
                                 <tr>
                                     <td>collated_gas_used</td>
-                                    <td>(((block_hash IS NULL) OR (gas_used IS NOT NULL)))</td>
+                                    <td>((block_hash IS NULL) OR (gas_used IS NOT NULL))</td>
                                 </tr>
                                 <tr>
                                     <td>collated_cumalative_gas_used</td>
-                                    <td>(((block_hash IS NULL) OR (cumulative_gas_used IS NOT NULL)))</td>
+                                    <td>((block_hash IS NULL) OR (cumulative_gas_used IS NOT NULL))</td>
                                 </tr>
                                 <tr>
-                                    <td>error</td>
-                                    <td>(((status &#61; 0) OR ((status &lt;&gt; 0) AND (error IS NULL))))</td>
+                                    <td>pending_block_number</td>
+                                    <td>((block_hash IS NOT NULL) OR (block_number IS NULL))</td>
+                                </tr>
+                                <tr>
+                                    <td>pending_cumalative_gas_used</td>
+                                    <td>((block_hash IS NOT NULL) OR (cumulative_gas_used IS NULL))</td>
+                                </tr>
+                                <tr>
+                                    <td>pending_index</td>
+                                    <td>((block_hash IS NOT NULL) OR (index IS NULL))</td>
+                                </tr>
+                                <tr>
+                                    <td>status</td>
+                                    <td>(((block_hash IS NULL) AND (status IS NULL)) OR (block_hash IS NOT NULL) OR ((status &#61; 0) AND ((error)::text &#61; &#39;dropped/replaced&#39;::text)))</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -949,7 +959,7 @@
                         <a href="https://github.com/schemaspy/schemaspy" title="GitHub for SchemaSpy"><i class="fa fa-github-square fa-2x"></i></a>
                         <a href="http://stackoverflow.com/questions/tagged/schemaspy" title="StackOverflow for SchemaSpy"><i class="fa fa-stack-overflow fa-2x"></i></a>
                     </div>
-                    <strong>Generated by <a href="http://schemaspy.org/" class="logo-text"><i class="fa fa-database"></i> SchemaSpy 6.2.4</a></strong>
+                    <strong>Generated by <a href="http://schemaspy.org/" class="logo-text"><i class="fa fa-database"></i> SchemaSpy 7.0.2</a></strong>
                 </div>
                 <!-- /.container -->
             </footer>

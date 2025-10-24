@@ -322,6 +322,40 @@
                                     </td>
                                     <td></td>
                                 </tr>
+                                <tr>
+                                    <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i><span id="token_type">token_type</span></td>
+                                    <td>varchar</td>
+                                    <td>255</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>null</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td class='indexedColumn' title='Indexed'><i class='fa fa-sitemap fa-rotate-120' style='padding-right: 5px;'></i><span id="block_consensus">block_consensus</span></td>
+                                    <td>bool</td>
+                                    <td>1</td>
+                                    <td title='nullable'>√</td>
+                                    <td title=''></td>
+                                    <td>true</td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <table border='0' cellspacing='0' cellpadding='0'>
+                                        </table>
+                                    </td>
+                                    <td></td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -359,6 +393,12 @@
                                     <td>transaction_hash + block_hash + log_index</td>
                                 </tr>
                                 <tr>
+                                    <td title='Indexed'>token_transfers_block_consensus_index</td>
+                                    <td>Performance</td>
+                                    <td><span title='Ascending'>Asc</span></td>
+                                    <td>block_consensus</td>
+                                </tr>
+                                <tr>
                                     <td title='Indexed'>token_transfers_block_number_ASC_log_index_ASC_index</td>
                                     <td>Performance</td>
                                     <td><span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span></td>
@@ -377,10 +417,22 @@
                                     <td>block_number</td>
                                 </tr>
                                 <tr>
+                                    <td title='Indexed'>token_transfers_from_address_hash_block_number_index</td>
+                                    <td>Performance</td>
+                                    <td><span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span></td>
+                                    <td>from_address_hash + block_number</td>
+                                </tr>
+                                <tr>
                                     <td title='Indexed'>token_transfers_from_address_hash_transaction_hash_index</td>
                                     <td>Performance</td>
                                     <td><span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span></td>
                                     <td>from_address_hash + transaction_hash</td>
+                                </tr>
+                                <tr>
+                                    <td title='Indexed'>token_transfers_to_address_hash_block_number_index</td>
+                                    <td>Performance</td>
+                                    <td><span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span></td>
+                                    <td>to_address_hash + block_number</td>
                                 </tr>
                                 <tr>
                                     <td title='Indexed'>token_transfers_to_address_hash_transaction_hash_index</td>
@@ -389,10 +441,10 @@
                                     <td>to_address_hash + transaction_hash</td>
                                 </tr>
                                 <tr>
-                                    <td title='Indexed'>token_transfers_token_contract_address_hash_block_number_index</td>
+                                    <td title='Indexed'>token_transfers_token_contract_address_hash__block_number_DESC_</td>
                                     <td>Performance</td>
-                                    <td><span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span></td>
-                                    <td>token_contract_address_hash + block_number</td>
+                                    <td><span title='Ascending'>Asc</span>/<span title='Descending'>Desc</span>/<span title='Descending'>Desc</span></td>
+                                    <td>token_contract_address_hash + block_number + log_index</td>
                                 </tr>
                                 <tr>
                                     <td title='Indexed'>token_transfers_token_contract_address_hash_token_ids_index</td>
@@ -405,6 +457,12 @@
                                     <td>Performance</td>
                                     <td><span title='Ascending'>Asc</span>/<span title='Ascending'>Asc</span></td>
                                     <td>token_contract_address_hash + transaction_hash</td>
+                                </tr>
+                                <tr>
+                                    <td title='Indexed'>token_transfers_token_type_index</td>
+                                    <td>Performance</td>
+                                    <td><span title='Ascending'>Asc</span></td>
+                                    <td>token_type</td>
                                 </tr>
                                 <tr>
                                     <td title='Indexed'>token_transfers_transaction_hash_log_index_index</td>
@@ -469,7 +527,7 @@
                         <a href="https://github.com/schemaspy/schemaspy" title="GitHub for SchemaSpy"><i class="fa fa-github-square fa-2x"></i></a>
                         <a href="http://stackoverflow.com/questions/tagged/schemaspy" title="StackOverflow for SchemaSpy"><i class="fa fa-stack-overflow fa-2x"></i></a>
                     </div>
-                    <strong>Generated by <a href="http://schemaspy.org/" class="logo-text"><i class="fa fa-database"></i> SchemaSpy 6.2.4</a></strong>
+                    <strong>Generated by <a href="http://schemaspy.org/" class="logo-text"><i class="fa fa-database"></i> SchemaSpy 7.0.2</a></strong>
                 </div>
                 <!-- /.container -->
             </footer>
